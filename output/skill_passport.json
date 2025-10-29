@@ -9,56 +9,41 @@
       "Python",
       "SQL",
       "Data Analysis",
-      "Machine Learning",
-      "Tableau",
-      "JavaScript",
-      "HTML/CSS",
-      "Project Management",
-      "Accounting",
-      "Cloud Computing",
-      "Data Entry"
+      "JavaScript"
     ],
-    "soft_skills": [
-      "Attention to Detail"
-    ],
-    "total_count": 12
+    "soft_skills": [],
+    "total_count": 4
   },
   "top_role_match": {
-    "role": "Junior ML Engineer",
-    "score": "63.0%",
-    "pay_range": "$70,000 - $100,000"
+    "role": "Junior Data Scientist",
+    "score": "59.9%",
+    "pay_range": "$65,000 - $95,000"
   },
   "alternative_roles": [
     {
       "role": "Data Analyst",
-      "score": "62.3%"
+      "score": "58.7%"
     },
     {
-      "role": "Junior Data Scientist",
-      "score": "60.4%"
+      "role": "Junior ML Engineer",
+      "score": "58.6%"
     },
     {
       "role": "Customer Insights Analyst",
-      "score": "59.9%"
+      "score": "57.0%"
     }
   ],
   "skill_gaps": [
+    "R Programming",
+    "Data Analysis",
     "Creativity",
-    "Teamwork",
     "Problem Solving",
-    "Python",
+    "Communication",
     "Machine Learning",
-    "Cloud Computing",
-    "SQL",
-    "Data Analysis"
+    "Python",
+    "SQL"
   ],
   "recommended_courses": [
-    {
-      "course": "AWS Cloud Practitioner Essentials",
-      "provider": "AWS Training",
-      "duration": "20 hours",
-      "cost": "Free"
-    },
     {
       "course": "Excel to Python for Data Analysis",
       "provider": "FreeCodeCamp",
@@ -69,6 +54,12 @@
       "course": "Introduction to SQL",
       "provider": "Khan Academy",
       "duration": "15 hours",
+      "cost": "Free"
+    },
+    {
+      "course": "R Programming for Data Science",
+      "provider": "edX",
+      "duration": "25 hours",
       "cost": "Free"
     },
     {

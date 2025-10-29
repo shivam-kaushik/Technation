@@ -714,3 +714,305 @@ def create_pdf_passport(passport: Dict, demographic_info: Dict = None, output_pa
         import traceback
         traceback.print_exc()
         return None
+
+
+# ============================================================================
+# EQUITY ANALYSIS FUNCTIONS
+# ============================================================================
+
+def get_demographic_profile(gender: str = None, ethnicity: str = None, background: str = None) -> Dict:
+    """Get demographic profile with equity insights"""
+    profile = {
+        'challenges': [],
+        'advantages': [],
+        'communities': [],
+        'companies': []
+    }
+    
+    # Gender-based salary adjustments (based on industry research)
+    if gender == "Woman":
+        profile['salary_adjustment'] = 0.92  # 8% gap
+        profile['confidence_boost'] = 1.3  # 30% skill boost
+        profile['challenges'].append("Gender pay gap in tech (8% average)")
+        profile['challenges'].append("Underrepresentation in senior roles")
+        profile['advantages'].append("Diverse problem-solving perspectives")
+        profile['advantages'].append("Strong collaborative skills")
+        profile['communities'].append("Women in Machine Learning (WiML)")
+        profile['communities'].append("AnitaB.org")
+        profile['companies'].extend(["Microsoft", "Salesforce", "Adobe", "IBM"])
+    elif gender == "Non-binary":
+        profile['salary_adjustment'] = 0.90  # 10% gap
+        profile['confidence_boost'] = 1.3
+        profile['challenges'].append("Gender pay gap (10% average)")
+        profile['challenges'].append("Workplace inclusivity barriers")
+        profile['advantages'].append("Unique perspectives on user diversity")
+        profile['advantages'].append("Strong empathy and emotional intelligence")
+    
+    # Ethnicity-based insights
+    if ethnicity:
+        profile['ethnicity'] = ethnicity
+        if ethnicity == "Black or African American":
+            profile['ethnicity_adjustment'] = 0.95  # 5% gap
+            profile['representation_gap'] = True
+            profile['representation'] = "7% in tech vs 13% in general population"
+            profile['challenges'].append("Racial pay gap (5% average)")
+            profile['challenges'].append("Limited access to networks")
+            profile['advantages'].append("Cultural diversity strengthens teams")
+            profile['advantages'].append("Resilience and adaptability")
+            profile['communities'].append("Black in AI")
+            profile['companies'].extend(["Google", "Apple", "Facebook", "Intel"])
+        elif ethnicity == "Hispanic or Latino":
+            profile['ethnicity_adjustment'] = 0.95
+            profile['representation_gap'] = True
+            profile['representation'] = "8% in tech vs 18% in general population"
+            profile['challenges'].append("Racial pay gap (5% average)")
+            profile['challenges'].append("Underrepresentation in leadership")
+            profile['advantages'].append("Bilingual capabilities (often)")
+            profile['advantages'].append("Cross-cultural communication skills")
+            profile['communities'].append("Latinx in AI")
+            profile['companies'].extend(["Amazon", "Google", "Microsoft", "Cisco"])
+        elif ethnicity in ["Native American", "Pacific Islander"]:
+            profile['ethnicity_adjustment'] = 0.93
+            profile['representation_gap'] = True
+            profile['representation'] = "Less than 1% in tech"
+            profile['challenges'].append("Significant underrepresentation")
+            profile['advantages'].append("Unique cultural perspectives")
+            profile['communities'].append("Indigenous in AI")
+    
+    # Background insights
+    if background:
+        profile['background'] = background
+        if background == "Non-STEM":
+            profile['career_changer'] = True
+            profile['success_rate'] = "60% successful transition rate"
+            profile['transition_difficulty'] = "Moderate to Challenging"
+            profile['challenges'].append("Lack of traditional credentials")
+            profile['challenges'].append("Imposter syndrome")
+            profile['advantages'].append("Diverse domain expertise")
+            profile['advantages'].append("Fresh perspectives on problems")
+            profile['advantages'].append("Strong transferable skills")
+        elif background == "Self-taught":
+            profile['career_changer'] = True
+            profile['success_rate'] = "65% successful transition rate"
+            profile['transition_difficulty'] = "Moderate"
+            profile['challenges'].append("Credential gaps")
+            profile['challenges'].append("Network building needed")
+            profile['advantages'].append("Strong self-motivation")
+            profile['advantages'].append("Problem-solving mindset")
+            profile['advantages'].append("Practical project experience")
+        elif background == "STEM (Non-AI)":
+            profile['success_rate'] = "75% successful transition rate"
+            profile['transition_difficulty'] = "Easier"
+            profile['advantages'].append("Strong technical foundation")
+            profile['advantages'].append("Analytical thinking skills")
+    
+    # Always return the profile, even if partially populated
+    return profile
+
+
+def calculate_equity_adjusted_salary(salary_range: str, gender: str = None, ethnicity: str = None) -> Dict:
+    """Calculate equity-adjusted salary with negotiation tips"""
+    try:
+        # Parse salary range
+        parts = salary_range.replace('$', '').replace(',', '').split('-')
+        if len(parts) != 2:
+            return None
+        
+        low = int(parts[0].strip())
+        high = int(parts[1].strip())
+        mid = (low + high) // 2
+        
+        # Calculate gaps
+        gender_gap = 0.08 if gender == "Woman" else 0.0
+        ethnicity_gap = 0.05 if ethnicity in ["Black or African American", "Hispanic or Latino"] else 0.0
+        total_gap = gender_gap + ethnicity_gap
+        
+        # Calculate adjusted ranges
+        typical_low = int(low * (1 - total_gap))
+        typical_mid = int(mid * (1 - total_gap))
+        target_low = low
+        target_high = high
+        
+        negotiation_tip = None
+        if total_gap > 0:
+            gap_percent = int(total_gap * 100)
+            negotiation_tip = f"⚠️ Research shows a {gap_percent}% combined pay gap. Negotiate confidently for ${target_low:,}+"
+        
+        return {
+            'market_range': f"${low:,} - ${high:,}",
+            'typical_range': f"${typical_low:,} - ${typical_mid:,}",
+            'target_range': f"${target_low:,} - ${target_high:,}",
+            'gap_percent': int(total_gap * 100),
+            'negotiation_tip': negotiation_tip
+        }
+    except:
+        return None
+
+
+def enhance_skills_with_confidence(skills: List[str], gender: str = None, 
+                                   ethnicity: str = None, background: str = None) -> tuple:
+    """Add inferred skills for underrepresented groups (30% boost)
+    
+    Returns:
+        tuple: (enhanced_skills, inferred_skills)
+    """
+    # Handle empty skills list
+    if not skills:
+        return [], []
+    
+    inferred = []
+    
+    # For women and underrepresented groups, infer transferable skills
+    if gender in ["Woman", "Non-binary"] or ethnicity in ["Black or African American", "Hispanic or Latino"]:
+        # Leadership and collaboration (often undervalued in women)
+        if any(s in ['project', 'management', 'team'] for s in [str(sk).lower() for sk in skills]):
+            inferred.extend(['Leadership', 'Team Collaboration', 'Project Management'])
+        
+        # Communication (often a hidden strength)
+        if any(s in ['presentation', 'documentation', 'reporting'] for s in [str(sk).lower() for sk in skills]):
+            inferred.extend(['Technical Communication', 'Stakeholder Management'])
+    
+    # For career changers, infer domain expertise
+    if background in ["Non-STEM", "STEM (Non-AI)"]:
+        if any(s in ['healthcare', 'medical', 'clinical'] for s in [str(sk).lower() for sk in skills]):
+            inferred.append('Domain Expertise: Healthcare')
+        if any(s in ['finance', 'banking', 'trading'] for s in [str(sk).lower() for sk in skills]):
+            inferred.append('Domain Expertise: Finance')
+        if any(s in ['retail', 'sales', 'customer'] for s in [str(sk).lower() for sk in skills]):
+            inferred.append('Domain Expertise: Business')
+    
+    # Remove duplicates and limit to 30% of original skill count
+    inferred_unique = list(set(inferred))[:max(1, int(len(skills) * 0.3))] if inferred else []
+    
+    # Enhanced skills = original + inferred
+    enhanced = skills + inferred_unique if inferred_unique else skills
+    
+    return enhanced, inferred_unique
+
+
+def get_targeted_role_recommendations(matches: List[Dict], gender: str = None, 
+                                     ethnicity: str = None, background: str = None) -> List[Dict]:
+    """Add equity insights to role recommendations"""
+    for match in matches:
+        insights = []
+        
+        if gender == "Woman":
+            insights.append("💡 Women excel in this role: Strong analytical and collaborative skills valued")
+        
+        if ethnicity in ["Black or African American", "Hispanic or Latino"]:
+            insights.append("🌍 Diverse perspectives highly valued in AI ethics and fairness")
+        
+        if background == "Non-STEM":
+            insights.append("🎓 Domain expertise from your background is a competitive advantage")
+        
+        if insights:
+            match['equity_insight'] = " | ".join(insights)
+    
+    return matches
+
+
+def get_support_resources(gender: str = None, ethnicity: str = None, background: str = None) -> Dict:
+    """Get targeted support resources"""
+    resources = {
+        'communities': [],
+        'companies': [],
+        'links': []
+    }
+    
+    # Gender-based resources
+    if gender == "Woman":
+        resources['communities'].extend([
+            'Women in Machine Learning (WiML)',
+            'AnitaB.org',
+            'Women Who Code',
+            'Girls Who Code (Mentorship)'
+        ])
+        resources['links'].extend([
+            {'name': 'Women in Machine Learning (WiML)', 'url': 'https://wimlworkshop.org'},
+            {'name': 'AnitaB.org', 'url': 'https://anitab.org'},
+            {'name': 'Women Who Code', 'url': 'https://www.womenwhocode.com'},
+        ])
+        resources['companies'].extend(['Microsoft', 'Salesforce', 'Adobe', 'IBM', 'Accenture', 'PwC'])
+    
+    # Ethnicity-based resources
+    if ethnicity == "Black or African American":
+        resources['communities'].extend([
+            'Black in AI',
+            'National Society of Black Engineers (NSBE)',
+            'Code2040'
+        ])
+        resources['links'].append({'name': 'Black in AI', 'url': 'https://blackinai.github.io'})
+        resources['companies'].extend(['Google', 'Apple', 'Facebook', 'Intel'])
+    
+    if ethnicity == "Hispanic or Latino":
+        resources['communities'].extend([
+            'Latinx in AI',
+            'SHPE (Society of Hispanic Professional Engineers)',
+            'Techqueria'
+        ])
+        resources['links'].append({'name': 'Latinx in AI', 'url': 'https://www.latinxinai.org'})
+        resources['companies'].extend(['Amazon', 'Google', 'Microsoft', 'Cisco'])
+    
+    if ethnicity == "East Asian":
+        resources['communities'].append('Ascend Leadership')
+        resources['companies'].extend(['Google', 'Microsoft', 'Amazon'])
+    
+    if ethnicity == "South Asian":
+        resources['communities'].append('The Indus Entrepreneurs (TiE)')
+        resources['companies'].extend(['Microsoft', 'Google', 'Amazon', 'Oracle'])
+    
+    # Background-based resources
+    if background in ["Non-STEM", "Self-taught"]:
+        resources['communities'].extend([
+            'Coding Bootcamp Alumni Networks',
+            'Career Changers in Tech',
+            'Self-Taught Developers Community'
+        ])
+    
+    # General AI communities
+    if not resources['communities']:
+        resources['communities'].extend([
+            'AI Community',
+            'Machine Learning Society',
+            'Data Science Community'
+        ])
+        resources['companies'].extend(['Microsoft', 'Google', 'Amazon', 'IBM'])
+    
+    return resources
+
+
+def generate_confidence_message(gender: str = None, ethnicity: str = None, background: str = None) -> str:
+    """Generate personalized confidence boost message"""
+    messages = []
+    
+    if gender == "Woman":
+        messages.append("💪 Your analytical and problem-solving skills are exactly what AI needs")
+    
+    if ethnicity in ["Black or African American", "Hispanic or Latino"]:
+        messages.append("🌟 Diverse perspectives drive innovation in AI - your background is your strength")
+    
+    if background == "Non-STEM":
+        messages.append("🚀 Career changers bring fresh thinking - 60% successfully transition to AI roles")
+    
+    return " | ".join(messages) if messages else "You have valuable skills for AI roles!"
+
+
+def analyze_representation_gap(ethnicity: str = None) -> Dict:
+    """Analyze representation gaps in tech"""
+    gaps = {
+        "White": {"tech_percent": 63, "population_percent": 60, "gap": "+3%", "status": "overrepresented"},
+        "East Asian": {"tech_percent": 20, "population_percent": 6, "gap": "+14%", "status": "overrepresented"},
+        "South Asian": {"tech_percent": 13, "population_percent": 2, "gap": "+11%", "status": "overrepresented"},
+        "Black or African American": {"tech_percent": 7, "population_percent": 13, "gap": "-6%", "status": "underrepresented"},
+        "Hispanic or Latino": {"tech_percent": 8, "population_percent": 18, "gap": "-10%", "status": "underrepresented"},
+        "Native American": {"tech_percent": 0.5, "population_percent": 1.3, "gap": "-0.8%", "status": "underrepresented"},
+        "Pacific Islander": {"tech_percent": 0.3, "population_percent": 0.2, "gap": "+0.1%", "status": "proportional"},
+    }
+    
+    return gaps.get(ethnicity, {
+        "tech_percent": "N/A",
+        "population_percent": "N/A",
+        "gap": "N/A",
+        "status": "unknown"
+    })
+

@@ -3,6 +3,11 @@ Skill Recognition Engine - Enhanced with Women in AI, Industry Customization, an
 A comprehensive Streamlit application for skill recognition and career matching with DEI focus
 """
 
+# Disable TensorFlow to avoid compatibility issues
+import os
+os.environ['USE_TF'] = 'NO'
+os.environ['TRANSFORMERS_NO_TF'] = '1'
+
 import streamlit as st
 import json
 import os
@@ -15,9 +20,7 @@ from utils import (
     recommend_bridges,
     generate_skill_passport,
     create_pdf_passport,
-    get_skill_names
-)
-from equity_utils import (
+    get_skill_names,
     get_demographic_profile,
     calculate_equity_adjusted_salary,
     enhance_skills_with_confidence,
@@ -819,30 +822,6 @@ elif page == "✨ Recognized Skills":
     else:
         skills = st.session_state.recognized_skills
         
-        # Apply equity enhancement if demographic info provided
-        if st.session_state.demographic_info and not st.session_state.anonymous_mode:
-            gender = st.session_state.demographic_info.get('gender')
-            ethnicity = st.session_state.demographic_info.get('ethnicity')
-            
-            if gender or ethnicity:
-                enhanced_skills, inferred_skills = enhance_skills_with_confidence(skills, gender, ethnicity)
-                
-                # Show confidence message
-                conf_msg = generate_confidence_message(gender, ethnicity, 
-                                                      st.session_state.demographic_info.get('background'))
-                if conf_msg:
-                    st.info(f"💡 {conf_msg}")
-                
-                # Display inferred skills
-                if inferred_skills:
-                    st.markdown("### ⭐ Skills You Likely Have (Based on Your Profile)")
-                    st.markdown("You may be underselling yourself! Here are skills commonly associated with your background:")
-                    cols = st.columns(4)
-                    for idx, skill in enumerate(inferred_skills):
-                        with cols[idx % 4]:
-                            st.markdown(f'<span class="skill-tag-soft">⭐ {skill}</span>', unsafe_allow_html=True)
-                    st.markdown("---")
-        
         # Display skills by category
         # Extract skills properly from the dictionary format returned by extract_skills
         if isinstance(skills, dict):
@@ -852,6 +831,7 @@ elif page == "✨ Recognized Skills":
             # Convert IDs to names
             hard_skills = get_skill_names(hard_skill_ids)
             soft_skills = get_skill_names(soft_skill_ids)
+            all_skill_names = hard_skills + soft_skills
         else:
             # Fallback for old format
             hard_skills = []
@@ -864,6 +844,34 @@ elif page == "✨ Recognized Skills":
                         soft_skills.append(s.get('name', str(s)))
                 else:
                     hard_skills.append(str(s))
+            all_skill_names = hard_skills + soft_skills
+        
+        # Apply equity enhancement if demographic info provided
+        inferred_skills = []
+        if st.session_state.demographic_info and not st.session_state.anonymous_mode:
+            gender = st.session_state.demographic_info.get('gender')
+            ethnicity = st.session_state.demographic_info.get('ethnicity')
+            background = st.session_state.demographic_info.get('background')
+            
+            if (gender or ethnicity or background) and all_skill_names:
+                enhanced_skills, inferred_skills = enhance_skills_with_confidence(
+                    all_skill_names, gender, ethnicity, background
+                )
+                
+                # Show confidence message
+                conf_msg = generate_confidence_message(gender, ethnicity, background)
+                if conf_msg:
+                    st.info(f"💡 {conf_msg}")
+                
+                # Display inferred skills
+                if inferred_skills:
+                    st.markdown("### ⭐ Skills You Likely Have (Based on Your Profile)")
+                    st.markdown("You may be underselling yourself! Here are skills commonly associated with your background:")
+                    cols = st.columns(4)
+                    for idx, skill in enumerate(inferred_skills):
+                        with cols[idx % 4]:
+                            st.markdown(f'<span class="skill-tag-soft">⭐ {skill}</span>', unsafe_allow_html=True)
+                    st.markdown("---")
         
         col1, col2 = st.columns(2)
         
@@ -1052,10 +1060,25 @@ elif page == "📈 Skill Gap Analysis":
 elif page == "🌍 Equity & Support":
     st.header("🌍 Equity Analysis & Support Resources")
     
-    if not st.session_state.demographic_info or st.session_state.anonymous_mode:
-        st.info("👆 Please fill out your demographic profile first (unless in anonymous mode)")
+    # Check if demographic info exists and has any values
+    has_demographic_data = (st.session_state.demographic_info and 
+                           any([st.session_state.demographic_info.get('gender'),
+                                st.session_state.demographic_info.get('ethnicity'),
+                                st.session_state.demographic_info.get('background')]))
+    
+    if not has_demographic_data and not st.session_state.anonymous_mode:
+        st.info("👆 Please fill out your demographic profile first in the 'My Profile' section to see personalized insights")
+        st.markdown("### Why Share Your Demographics?")
+        st.markdown("""
+        - 📊 **Representation Analysis**: See how your background is represented in AI roles
+        - 💰 **Salary Equity Insights**: Understand potential pay gaps and how to negotiate
+        - 🤝 **Community Connections**: Find support groups and mentorship opportunities
+        - 💪 **Strength Recognition**: Get credit for unique perspectives you bring
+        
+        All demographic data is optional and stored locally on your device.
+        """)
     else:
-        demo = st.session_state.demographic_info
+        demo = st.session_state.demographic_info or {}
         gender = demo.get('gender')
         ethnicity = demo.get('ethnicity')
         background = demo.get('background')
@@ -1105,12 +1128,24 @@ elif page == "🌍 Equity & Support":
                         st.markdown(f"• {strength}")
             
             # Representation gap analysis
-            if st.session_state.matches and ethnicity:
+            if ethnicity:
                 st.markdown("---")
                 st.markdown("### 📊 Representation Analysis")
-                gap_analysis = analyze_representation_gap(st.session_state.matches, ethnicity)
-                if gap_analysis:
-                    st.info(gap_analysis)
+                gap_data = analyze_representation_gap(ethnicity)
+                if gap_data and gap_data.get('tech_percent') != "N/A":
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("In Tech Industry", f"{gap_data['tech_percent']}%")
+                    with col2:
+                        st.metric("In General Population", f"{gap_data['population_percent']}%")
+                    with col3:
+                        gap_color = "🔴" if gap_data['status'] == "underrepresented" else "🟢" if gap_data['status'] == "overrepresented" else "🟡"
+                        st.metric("Gap", f"{gap_data['gap']} {gap_color}")
+                    
+                    if gap_data['status'] == "underrepresented":
+                        st.warning(f"⚠️ **{ethnicity}** professionals are underrepresented in tech. Your perspective is especially valuable!")
+                    else:
+                        st.info(f"ℹ️ Representation status: {gap_data['status'].title()}")
             
             # Support resources
             st.markdown("---")
