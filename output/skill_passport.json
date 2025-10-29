@@ -1,7 +1,8 @@
 {
   "user_info": {
-    "name": "Shivam Kaushik",
-    "date": "2025-10-28"
+    "name": "Anonymous",
+    "email": "",
+    "profile_completed": true
   },
   "verified_skills": {
     "hard_skills": [
@@ -24,33 +25,63 @@
   },
   "top_role_match": {
     "role": "Junior ML Engineer",
-    "score": "81.8%",
+    "score": "63.0%",
     "pay_range": "$70,000 - $100,000"
   },
   "alternative_roles": [
     {
       "role": "Data Analyst",
-      "score": "79.0%"
+      "score": "62.3%"
     },
     {
       "role": "Junior Data Scientist",
-      "score": "75.4%"
+      "score": "60.4%"
     },
     {
-      "role": "Business Intelligence Trainee",
-      "score": "70.7%"
+      "role": "Customer Insights Analyst",
+      "score": "59.9%"
     }
   ],
   "skill_gaps": [
-    "Teamwork",
     "Creativity",
-    "Problem Solving"
+    "Teamwork",
+    "Problem Solving",
+    "Python",
+    "Machine Learning",
+    "Cloud Computing",
+    "SQL",
+    "Data Analysis"
   ],
-  "recommended_courses": [],
+  "recommended_courses": [
+    {
+      "course": "AWS Cloud Practitioner Essentials",
+      "provider": "AWS Training",
+      "duration": "20 hours",
+      "cost": "Free"
+    },
+    {
+      "course": "Excel to Python for Data Analysis",
+      "provider": "FreeCodeCamp",
+      "duration": "20 hours",
+      "cost": "Free"
+    },
+    {
+      "course": "Introduction to SQL",
+      "provider": "Khan Academy",
+      "duration": "15 hours",
+      "cost": "Free"
+    },
+    {
+      "course": "Machine Learning with Python",
+      "provider": "Kaggle Learn",
+      "duration": "30 hours",
+      "cost": "Free"
+    }
+  ],
   "badges": {
     "skills_verified": true,
     "role_matched": true,
-    "learning_path_created": false
+    "learning_path_created": true
   },
   "generated_date": "2025-10-28"
 }

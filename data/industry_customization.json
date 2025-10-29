@@ -1,0 +1,511 @@
+{
+  "industries": [
+    {
+      "id": "healthcare",
+      "name": "Healthcare & Life Sciences",
+      "icon": "🏥",
+      "ai_applications": [
+        "Medical image analysis",
+        "Clinical decision support",
+        "Drug discovery",
+        "Patient outcome prediction",
+        "Electronic health record analysis",
+        "Diagnostic AI",
+        "Personalized medicine"
+      ],
+      "key_skills": {
+        "technical": ["Computer Vision", "NLP for clinical text", "Predictive modeling", "Time-series analysis", "Deep learning", "Data privacy (HIPAA)"],
+        "domain": ["Medical terminology", "Clinical workflows", "Regulatory compliance", "Patient safety", "Healthcare ethics"]
+      },
+      "roles": [
+        "Clinical AI Scientist",
+        "Healthcare ML Engineer",
+        "Medical Imaging AI Specialist",
+        "Biomedical Data Scientist",
+        "AI Product Manager (HealthTech)"
+      ],
+      "skill_translations": {
+        "Machine Learning": "Patient outcome prediction, readmission risk modeling",
+        "NLP": "Clinical note extraction, medical literature analysis, symptom parsing",
+        "Computer Vision": "X-ray/MRI analysis, pathology slide examination, skin lesion detection",
+        "Data Analysis": "Electronic health record mining, clinical trial data analysis",
+        "Deep Learning": "Diagnostic AI development, medical image segmentation"
+      },
+      "certifications": [
+        "Healthcare AI Certificate (Stanford)",
+        "Clinical Data Science (edX)",
+        "HIPAA Compliance Training",
+        "AI in Healthcare Specialization (Coursera)"
+      ],
+      "companies": [
+        "Mayo Clinic AI Lab",
+        "Google Health",
+        "IBM Watson Health",
+        "Tempus",
+        "PathAI",
+        "Butterfly Network",
+        "Viz.ai"
+      ]
+    },
+    {
+      "id": "finance",
+      "name": "Finance & Banking",
+      "icon": "💰",
+      "ai_applications": [
+        "Fraud detection",
+        "Algorithmic trading",
+        "Credit risk assessment",
+        "Customer service chatbots",
+        "Anti-money laundering",
+        "Portfolio optimization",
+        "Market prediction"
+      ],
+      "key_skills": {
+        "technical": ["Time-series forecasting", "Anomaly detection", "NLP for news sentiment", "Risk modeling", "Real-time processing", "Graph analytics"],
+        "domain": ["Financial regulations", "Trading strategies", "Risk management", "Compliance", "Financial products"]
+      },
+      "roles": [
+        "Quantitative Analyst (Quant)",
+        "Financial ML Engineer",
+        "Fraud Detection Specialist",
+        "Algorithmic Trading Developer",
+        "Credit Risk Data Scientist"
+      ],
+      "skill_translations": {
+        "Machine Learning": "Credit scoring, fraud pattern detection, default prediction",
+        "NLP": "News sentiment analysis for trading, customer inquiry classification, regulatory document analysis",
+        "Computer Vision": "Check fraud detection, document verification, KYC automation",
+        "Data Analysis": "Market trend analysis, customer segmentation, portfolio performance",
+        "Deep Learning": "High-frequency trading models, complex fraud schemes detection"
+      },
+      "certifications": [
+        "Financial Engineering & Risk Management (Columbia)",
+        "AI for Trading (Udacity)",
+        "Machine Learning for Finance (Coursera)",
+        "CFA with AI focus",
+        "Financial Risk Manager (FRM)"
+      ],
+      "companies": [
+        "Goldman Sachs",
+        "JPMorgan AI Research",
+        "BlackRock",
+        "Two Sigma",
+        "Citadel",
+        "Bloomberg",
+        "Stripe"
+      ]
+    },
+    {
+      "id": "retail",
+      "name": "Retail & E-commerce",
+      "icon": "🛒",
+      "ai_applications": [
+        "Recommendation systems",
+        "Demand forecasting",
+        "Dynamic pricing",
+        "Customer churn prediction",
+        "Visual search",
+        "Inventory optimization",
+        "Personalization"
+      ],
+      "key_skills": {
+        "technical": ["Recommendation algorithms", "Computer vision", "A/B testing", "Real-time ML", "Customer analytics", "Supply chain optimization"],
+        "domain": ["Consumer behavior", "Merchandising", "Supply chain", "E-commerce platforms", "Customer journey"]
+      },
+      "roles": [
+        "E-commerce ML Engineer",
+        "Recommendation Systems Engineer",
+        "Retail Data Scientist",
+        "Supply Chain AI Specialist",
+        "Customer Analytics Lead"
+      ],
+      "skill_translations": {
+        "Machine Learning": "Product recommendations, demand forecasting, customer lifetime value prediction",
+        "NLP": "Product review analysis, chatbot customer service, search query understanding",
+        "Computer Vision": "Visual product search, outfit matching, shelf monitoring, cashierless checkout",
+        "Data Analysis": "Customer segmentation, basket analysis, sales trend forecasting",
+        "Deep Learning": "Personalization at scale, complex pattern recognition in shopping behavior"
+      },
+      "certifications": [
+        "Recommender Systems Specialization (Coursera)",
+        "Supply Chain Analytics (MIT)",
+        "Customer Analytics (Wharton)",
+        "E-commerce AI (Stanford Online)"
+      ],
+      "companies": [
+        "Amazon",
+        "Walmart Labs",
+        "Target",
+        "Shopify",
+        "Stitch Fix",
+        "Instacart",
+        "Wayfair"
+      ]
+    },
+    {
+      "id": "manufacturing",
+      "name": "Manufacturing & IoT",
+      "icon": "🏭",
+      "ai_applications": [
+        "Predictive maintenance",
+        "Quality control",
+        "Process optimization",
+        "Supply chain management",
+        "Robot automation",
+        "Defect detection",
+        "Energy optimization"
+      ],
+      "key_skills": {
+        "technical": ["Computer vision", "Time-series analysis", "IoT data processing", "Sensor data analysis", "Edge AI", "Robotics"],
+        "domain": ["Manufacturing processes", "Quality standards", "Industrial equipment", "Safety protocols", "Lean manufacturing"]
+      },
+      "roles": [
+        "Manufacturing AI Engineer",
+        "Predictive Maintenance Specialist",
+        "Computer Vision QA Engineer",
+        "Industrial IoT Data Scientist",
+        "Smart Factory AI Architect"
+      ],
+      "skill_translations": {
+        "Machine Learning": "Equipment failure prediction, production yield optimization, energy consumption forecasting",
+        "NLP": "Maintenance log analysis, technical documentation processing",
+        "Computer Vision": "Defect detection on assembly lines, quality inspection automation, safety monitoring",
+        "Data Analysis": "Production efficiency analysis, downtime root cause analysis, sensor data interpretation",
+        "Deep Learning": "Complex defect pattern recognition, multi-sensor fusion for predictive maintenance"
+      },
+      "certifications": [
+        "Industrial IoT (Coursera)",
+        "AI for Industry 4.0 (MIT)",
+        "Predictive Maintenance (Udacity)",
+        "Smart Manufacturing (edX)"
+      ],
+      "companies": [
+        "Siemens",
+        "GE Digital",
+        "Tesla",
+        "Bosch",
+        "Rockwell Automation",
+        "Cognex",
+        "Landing AI"
+      ]
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing & Advertising",
+      "icon": "📢",
+      "ai_applications": [
+        "Customer segmentation",
+        "Ad targeting",
+        "Content generation",
+        "Sentiment analysis",
+        "Attribution modeling",
+        "Campaign optimization",
+        "Influencer matching"
+      ],
+      "key_skills": {
+        "technical": ["NLP", "Recommendation systems", "A/B testing", "Causal inference", "Customer analytics", "Real-time bidding"],
+        "domain": ["Marketing strategy", "Consumer psychology", "Brand management", "Digital advertising", "Content marketing"]
+      },
+      "roles": [
+        "Marketing AI Specialist",
+        "Ad Tech ML Engineer",
+        "Customer Intelligence Analyst",
+        "Personalization Engineer",
+        "Marketing Data Scientist"
+      ],
+      "skill_translations": {
+        "Machine Learning": "Customer lifetime value prediction, churn prevention, campaign ROI optimization",
+        "NLP": "Social media sentiment analysis, content performance prediction, chatbot marketing assistants, ad copy generation",
+        "Computer Vision": "Image-based ad targeting, visual content analysis, brand logo detection",
+        "Data Analysis": "Marketing mix modeling, customer journey analysis, campaign attribution",
+        "Deep Learning": "Personalized content recommendation, dynamic creative optimization"
+      },
+      "certifications": [
+        "Marketing Analytics (Google)",
+        "AI for Marketing (Northwestern)",
+        "Customer Analytics (Wharton)",
+        "Digital Marketing Specialization with AI"
+      ],
+      "companies": [
+        "Google Ads",
+        "Meta AI",
+        "Adobe",
+        "Salesforce",
+        "HubSpot",
+        "Persado",
+        "Phrasee"
+      ]
+    },
+    {
+      "id": "automotive",
+      "name": "Automotive & Mobility",
+      "icon": "🚗",
+      "ai_applications": [
+        "Autonomous driving",
+        "Driver assistance systems",
+        "Predictive maintenance",
+        "Fleet management",
+        "Route optimization",
+        "In-car voice assistants",
+        "Traffic prediction"
+      ],
+      "key_skills": {
+        "technical": ["Computer vision", "Sensor fusion", "Deep learning", "Reinforcement learning", "Real-time systems", "Robotics", "SLAM"],
+        "domain": ["Automotive engineering", "Safety regulations", "Vehicle dynamics", "Transportation systems"]
+      },
+      "roles": [
+        "Autonomous Vehicle Engineer",
+        "Computer Vision Engineer (Automotive)",
+        "Perception ML Engineer",
+        "Robotics Software Engineer",
+        "Fleet Intelligence Data Scientist"
+      ],
+      "skill_translations": {
+        "Machine Learning": "Driver behavior prediction, traffic pattern forecasting, predictive vehicle maintenance",
+        "NLP": "Voice-activated controls, in-car AI assistants, user manual Q&A systems",
+        "Computer Vision": "Object detection for autonomous driving, lane detection, parking assistance, pedestrian detection",
+        "Data Analysis": "Fleet performance analysis, route optimization, safety incident analysis",
+        "Deep Learning": "Sensor fusion for autonomous navigation, end-to-end driving models"
+      },
+      "certifications": [
+        "Self-Driving Cars Specialization (Coursera)",
+        "Autonomous Systems (MIT)",
+        "Computer Vision for Autonomous Vehicles",
+        "Sensor Fusion (Udacity)"
+      ],
+      "companies": [
+        "Waymo",
+        "Tesla",
+        "Cruise",
+        "NVIDIA Automotive",
+        "Aurora",
+        "Argo AI",
+        "Zoox"
+      ]
+    },
+    {
+      "id": "energy",
+      "name": "Energy & Utilities",
+      "icon": "⚡",
+      "ai_applications": [
+        "Smart grid optimization",
+        "Demand forecasting",
+        "Renewable energy prediction",
+        "Equipment monitoring",
+        "Energy trading",
+        "Outage prediction",
+        "Carbon footprint optimization"
+      ],
+      "key_skills": {
+        "technical": ["Time-series forecasting", "IoT analytics", "Optimization algorithms", "Anomaly detection", "Geospatial analysis"],
+        "domain": ["Energy systems", "Grid infrastructure", "Renewable energy", "Energy markets", "Sustainability"]
+      },
+      "roles": [
+        "Energy AI Engineer",
+        "Smart Grid Data Scientist",
+        "Renewable Energy Analyst",
+        "Utility Analytics Specialist",
+        "Energy Trading Quant"
+      ],
+      "skill_translations": {
+        "Machine Learning": "Energy demand forecasting, renewable generation prediction, outage prevention",
+        "NLP": "Customer service automation, regulatory document analysis",
+        "Computer Vision": "Solar panel inspection, power line monitoring, meter reading automation",
+        "Data Analysis": "Consumption pattern analysis, grid performance optimization, energy efficiency audits",
+        "Deep Learning": "Complex weather-energy relationship modeling, multi-variable grid optimization"
+      },
+      "certifications": [
+        "Energy Analytics (MIT)",
+        "Smart Grid Analytics",
+        "Renewable Energy Systems",
+        "AI for Climate Change"
+      ],
+      "companies": [
+        "Google Energy",
+        "Tesla Energy",
+        "Siemens Energy",
+        "Schneider Electric",
+        "DeepMind (energy efficiency)",
+        "C3.ai Energy",
+        "Stem Inc."
+      ]
+    },
+    {
+      "id": "telecommunications",
+      "name": "Telecommunications",
+      "icon": "📡",
+      "ai_applications": [
+        "Network optimization",
+        "Predictive maintenance",
+        "Customer churn prevention",
+        "Fraud detection",
+        "Traffic forecasting",
+        "Service personalization",
+        "Virtual assistants"
+      ],
+      "key_skills": {
+        "technical": ["Network analytics", "Time-series analysis", "Real-time processing", "Anomaly detection", "NLP"],
+        "domain": ["Network protocols", "Telecom infrastructure", "Wireless systems", "5G/6G technology"]
+      },
+      "roles": [
+        "Telecom AI Engineer",
+        "Network Intelligence Analyst",
+        "Customer Analytics Specialist",
+        "Network Optimization Engineer",
+        "Fraud Detection ML Engineer"
+      ],
+      "skill_translations": {
+        "Machine Learning": "Churn prediction, network traffic optimization, call quality prediction",
+        "NLP": "Customer service chatbots, voice assistant integration, sentiment analysis of customer feedback",
+        "Computer Vision": "Network infrastructure inspection, cell tower monitoring",
+        "Data Analysis": "Network performance analysis, customer behavior segmentation, call detail record mining",
+        "Deep Learning": "Complex network optimization, fraud pattern detection across millions of transactions"
+      },
+      "certifications": [
+        "Network Analytics",
+        "5G and AI Integration",
+        "Telecom Data Science",
+        "Customer Churn Prediction"
+      ],
+      "companies": [
+        "AT&T",
+        "Verizon",
+        "T-Mobile",
+        "Nokia",
+        "Ericsson",
+        "Huawei",
+        "Cisco"
+      ]
+    }
+  ],
+  "company_dei_insights": [
+    {
+      "company": "Google",
+      "dei_score": 4.5,
+      "women_in_tech": "31%",
+      "underrepresented_minorities": "9.4%",
+      "initiatives": [
+        "Women Techmakers program",
+        "AI for Social Good",
+        "Diversity annual reports",
+        "Unconscious bias training",
+        "Employee resource groups (ERGs)"
+      ],
+      "parental_leave": "18 weeks paid (birthing parent), 12 weeks (non-birthing)",
+      "flexible_work": "Hybrid model available",
+      "accessibility": "Strong accessibility focus, inclusive design"
+    },
+    {
+      "company": "Microsoft",
+      "dei_score": 4.6,
+      "women_in_tech": "29.2%",
+      "underrepresented_minorities": "10.8%",
+      "initiatives": [
+        "DigiGirlz program",
+        "AI for Accessibility",
+        "Diversity & Inclusion reports",
+        "LEAP apprenticeship program",
+        "Supplier diversity"
+      ],
+      "parental_leave": "20 weeks paid (primary caregiver)",
+      "flexible_work": "Fully flexible hybrid",
+      "accessibility": "Leading in accessibility technology"
+    },
+    {
+      "company": "Salesforce",
+      "dei_score": 4.7,
+      "women_in_tech": "33%",
+      "underrepresented_minorities": "13.5%",
+      "initiatives": [
+        "Office of Ethical and Humane Use of Technology",
+        "Equal pay assessments",
+        "BOLDforce (Black Organization for Leadership & Development)",
+        "Outforce (LGBTQ+ employees)",
+        "Vetforce (veterans)"
+      ],
+      "parental_leave": "26 weeks paid (primary caregiver)",
+      "flexible_work": "Work from anywhere",
+      "accessibility": "Accessibility first in product design"
+    },
+    {
+      "company": "IBM",
+      "dei_score": 4.4,
+      "women_in_tech": "32%",
+      "underrepresented_minorities": "15%",
+      "initiatives": [
+        "P-TECH program (education pipeline)",
+        "AI Ethics Board",
+        "SkillsBuild platform",
+        "Return to Work program",
+        "Neurodiversity hiring"
+      ],
+      "parental_leave": "20 weeks paid",
+      "flexible_work": "Hybrid and remote options",
+      "accessibility": "60+ years of accessibility innovation"
+    },
+    {
+      "company": "Amazon",
+      "dei_score": 3.9,
+      "women_in_tech": "26%",
+      "underrepresented_minorities": "11.1%",
+      "initiatives": [
+        "Women in Engineering",
+        "Black Employee Network",
+        "Amazon Future Engineer",
+        "Upskilling 2025 pledge",
+        "Glamazon (LGBTQ+)"
+      ],
+      "parental_leave": "20 weeks paid (birthing parent), 6 weeks (non-birthing)",
+      "flexible_work": "Varies by team",
+      "accessibility": "Improving workplace accessibility"
+    },
+    {
+      "company": "Meta",
+      "dei_score": 4.1,
+      "women_in_tech": "25%",
+      "underrepresented_minorities": "8.9%",
+      "initiatives": [
+        "Black, Latinx, Native American programs",
+        "Women in Tech",
+        "Inclusive product design",
+        "Community Boost program",
+        "Diverse slate approach to hiring"
+      ],
+      "parental_leave": "16 weeks paid (all parents)",
+      "flexible_work": "Distributed work available",
+      "accessibility": "Accessibility research teams"
+    },
+    {
+      "company": "Apple",
+      "dei_score": 4.3,
+      "women_in_tech": "27%",
+      "underrepresented_minorities": "12%",
+      "initiatives": [
+        "Racial Equity and Justice Initiative",
+        "Community Education Initiative",
+        "Entrepreneur Camp for Women",
+        "Supplier diversity",
+        "Accessibility features in all products"
+      ],
+      "parental_leave": "16 weeks paid",
+      "flexible_work": "Hybrid model",
+      "accessibility": "Industry leader in accessibility"
+    },
+    {
+      "company": "NVIDIA",
+      "dei_score": 4.2,
+      "women_in_tech": "22%",
+      "underrepresented_minorities": "9%",
+      "initiatives": [
+        "Women in AI",
+        "NVIDIA Inception program",
+        "University partnerships",
+        "Diverse hiring initiatives",
+        "IGNITE (employee resource groups)"
+      ],
+      "parental_leave": "22 weeks paid",
+      "flexible_work": "Flexible arrangements",
+      "accessibility": "GPU acceleration for accessibility"
+    }
+  ]
+}

@@ -668,25 +668,15 @@ elif page == "🔍 Upload CV & Analyze":
     input_method = st.radio("Choose input method:", ["📤 Upload File", "📋 Paste Text", "❓ Quick Skill Quiz"])
     
     if input_method == "📤 Upload File":
-        uploaded_file = st.file_uploader("Upload your CV (PDF/TXT)", type=['pdf', 'txt'], key="cv_uploader")
+        uploaded_file = st.file_uploader("Upload your CV (PDF/TXT)", type=['pdf', 'txt'])
         if uploaded_file:
-            try:
-                if uploaded_file.type == "text/plain":
-                    st.session_state.text = uploaded_file.read().decode('utf-8')
-                else:
-                    st.session_state.text = ingest_and_clean(uploaded_file)
-                st.success("✅ File uploaded successfully!")
-                with st.expander("View extracted text"):
-                    st.text_area("Content", st.session_state.text, height=200, key="extracted_text_preview")
-            except Exception as e:
-                st.error(f"❌ Error processing file: {str(e)}")
-                st.info("💡 Try one of these solutions:")
-                st.markdown("""
-                - **Use 'Paste Text' instead**: Copy your resume text and paste it directly
-                - **Check file size**: Ensure your file is under 200MB
-                - **Try a different format**: Convert PDF to TXT if having issues
-                - **Refresh the page**: Press Ctrl+R or F5 and try again
-                """)
+            if uploaded_file.type == "text/plain":
+                st.session_state.text = uploaded_file.read().decode('utf-8')
+            else:
+                st.session_state.text = ingest_and_clean(uploaded_file)
+            st.success("✅ File uploaded successfully!")
+            with st.expander("View extracted text"):
+                st.text_area("Content", st.session_state.text, height=200)
     
     elif input_method == "📋 Paste Text":
         text_input = st.text_area("Paste your CV or profile text here:", height=300)
@@ -730,20 +720,8 @@ elif page == "🔍 Upload CV & Analyze":
                 
                 skills = extract_skills(text_to_analyze)
                 st.session_state.recognized_skills = skills
-                
-                # Combine all skill IDs for vector computation
-                all_skill_ids = []
-                if isinstance(skills, dict):
-                    all_skill_ids = skills.get('hard_skills', []) + skills.get('soft_skills', [])
-                else:
-                    # Fallback for old format
-                    all_skill_ids = skills
-                
-                st.session_state.user_vector = compute_user_vector(all_skill_ids)
-                
-                # Get skill names for match_roles function
-                skill_names = get_skill_names(all_skill_ids)
-                matches = match_roles(st.session_state.user_vector, skill_names)
+                st.session_state.user_vector = compute_user_vector(skills)
+                matches = match_roles(st.session_state.user_vector)
                 st.session_state.matches = matches
                 st.success("✅ Analysis complete! Check 'Recognized Skills' to see results.")
 
@@ -844,40 +822,22 @@ elif page == "✨ Recognized Skills":
                     st.markdown("---")
         
         # Display skills by category
-        # Extract skills properly from the dictionary format returned by extract_skills
-        if isinstance(skills, dict):
-            hard_skill_ids = skills.get('hard_skills', [])
-            soft_skill_ids = skills.get('soft_skills', [])
-            
-            # Convert IDs to names
-            hard_skills = get_skill_names(hard_skill_ids)
-            soft_skills = get_skill_names(soft_skill_ids)
-        else:
-            # Fallback for old format
-            hard_skills = []
-            soft_skills = []
-            for s in skills:
-                if isinstance(s, dict):
-                    if s.get('category') == 'hard':
-                        hard_skills.append(s.get('name', str(s)))
-                    else:
-                        soft_skills.append(s.get('name', str(s)))
-                else:
-                    hard_skills.append(str(s))
+        hard_skills = [s for s in skills if s.get('category') == 'hard']
+        soft_skills = [s for s in skills if s.get('category') == 'soft']
         
         col1, col2 = st.columns(2)
         
         with col1:
             st.markdown("### 💻 Technical Skills")
             st.markdown(f"**Found: {len(hard_skills)} skills**")
-            for skill_name in hard_skills:
-                st.markdown(f'<span class="skill-tag-hard">{skill_name}</span>', unsafe_allow_html=True)
+            for skill in hard_skills:
+                st.markdown(f'<span class="skill-tag-hard">{skill["name"]}</span>', unsafe_allow_html=True)
         
         with col2:
             st.markdown("### 🤝 Soft Skills")
             st.markdown(f"**Found: {len(soft_skills)} skills**")
-            for skill_name in soft_skills:
-                st.markdown(f'<span class="skill-tag-soft">{skill_name}</span>', unsafe_allow_html=True)
+            for skill in soft_skills:
+                st.markdown(f'<span class="skill-tag-soft">{skill["name"]}</span>', unsafe_allow_html=True)
         
         # Industry translation if industry selected
         if st.session_state.industry_selection:
@@ -885,19 +845,8 @@ elif page == "✨ Recognized Skills":
             st.markdown(f"### 🏢 Your Skills in {st.session_state.industry_selection['name']}")
             st.markdown("Here's how your skills translate to this industry:")
             
-            # Extract all skill names from the skills dictionary
-            all_skill_names = []
-            if isinstance(skills, dict):
-                all_skill_ids = skills.get('hard_skills', []) + skills.get('soft_skills', [])
-                all_skill_names = get_skill_names(all_skill_ids)
-            else:
-                for s in skills:
-                    if isinstance(s, dict):
-                        all_skill_names.append(s.get('name', str(s)))
-                    else:
-                        all_skill_names.append(str(s))
-            
-            translations = translate_skills_for_industry(all_skill_names, st.session_state.industry_selection)
+            skill_names = [s['name'] for s in skills]
+            translations = translate_skills_for_industry(skill_names, st.session_state.industry_selection)
             
             for skill, translation in translations.items():
                 if translation != skill:
@@ -932,15 +881,12 @@ elif page == "🧠 AI Role Matches":
         st.markdown(f"### Found {len(matches)} matching roles")
         
         for idx, role in enumerate(matches[:10], 1):
-            with st.expander(f"{idx}. {role['role_name']} - {role['similarity']:.1%} match", expanded=(idx <= 3)):
+            with st.expander(f"{idx}. {role['role']} - {role['similarity']:.1%} match", expanded=(idx <= 3)):
                 col1, col2 = st.columns([2, 1])
                 
                 with col1:
                     st.markdown(f"**Description:** {role.get('description', 'N/A')}")
-                    st.markdown(f"**Required Skills:** {', '.join(role.get('matched_skills', [])[:5])}")
-                    
-                    if role.get('gaps'):
-                        st.markdown(f"**Skills to Learn:** {', '.join(role['gaps'][:5])}")
+                    st.markdown(f"**Required Skills:** {', '.join(role.get('required_skills', [])[:5])}")
                     
                     # Show equity insight if available
                     if 'equity_insight' in role:
@@ -948,11 +894,10 @@ elif page == "🧠 AI Role Matches":
                 
                 with col2:
                     st.metric("Match Score", f"{role['similarity']:.1%}")
-                    st.metric("Coverage", f"{role.get('coverage', 0):.1%}")
                     
                     # Salary with equity adjustment
-                    if 'pay_range' in role:
-                        salary_range = role['pay_range']
+                    if 'salary_range' in role:
+                        salary_range = role['salary_range']
                         st.markdown(f"**💰 Salary Range:** {salary_range}")
                         
                         # Show equity-adjusted salary
@@ -982,25 +927,19 @@ elif page == "📈 Skill Gap Analysis":
     else:
         st.markdown("Select a target role to see what skills you need to develop:")
         
-        role_names = [r['role_name'] for r in st.session_state.matches[:10]]
+        role_names = [r['role'] for r in st.session_state.matches[:10]]
         selected_role = st.selectbox("Target Role", role_names)
         
         # Find the selected role
-        role_data = next(r for r in st.session_state.matches if r['role_name'] == selected_role)
+        role_data = next(r for r in st.session_state.matches if r['role'] == selected_role)
         
         # Get user skills
-        user_skills_dict = st.session_state.recognized_skills
-        if isinstance(user_skills_dict, dict):
-            all_skill_ids = user_skills_dict.get('hard_skills', []) + user_skills_dict.get('soft_skills', [])
-            user_skill_names = get_skill_names(all_skill_ids)
-        else:
-            user_skill_names = [s.get('name', str(s)) if isinstance(s, dict) else str(s) for s in user_skills_dict]
+        user_skills = set([s['name'].lower() for s in st.session_state.recognized_skills])
+        required_skills = set([s.lower() for s in role_data.get('required_skills', [])])
         
-        user_skills = set([s.lower() for s in user_skill_names])
-        
-        # Get gaps from role data
-        gaps = role_data.get('gaps', [])
-        matched_skills = role_data.get('matched_skills', [])
+        # Calculate gaps
+        missing_skills = required_skills - user_skills
+        matched_skills = required_skills & user_skills
         
         # Display
         col1, col2 = st.columns(2)
@@ -1012,29 +951,21 @@ elif page == "📈 Skill Gap Analysis":
         
         with col2:
             st.markdown("### 📚 Skills to Learn")
-            for skill in gaps:
+            for skill in missing_skills:
                 st.markdown(f"• {skill.title()}")
         
         # Learning recommendations
-        if gaps:
+        if missing_skills:
             st.markdown("---")
             st.markdown("### 🎓 Recommended Learning Resources")
             
-            bridges = recommend_bridges(list(gaps), user_skill_names)
+            bridges = recommend_bridges(list(missing_skills))
             for bridge in bridges[:5]:
                 st.markdown(f"""
                 <div style="background: white; border: 2px solid #e5e7eb; padding: 1.5rem; 
                             margin: 1rem 0; border-radius: 12px;">
-                    <h4 style="margin: 0; color: #1e293b;">{bridge['course_name']}</h4>
+                    <h4 style="margin: 0; color: #1e293b;">{bridge['name']}</h4>
                     <p style="margin: 0.5rem 0;">{bridge.get('description', '')}</p>
-                    <p style="margin: 0.5rem 0; font-size: 0.9rem; color: #64748b;">
-                        <strong>Provider:</strong> {bridge.get('provider', 'N/A')} | 
-                        <strong>Duration:</strong> {bridge.get('duration_hours', 'N/A')} hours | 
-                        <strong>Cost:</strong> {'Free' if bridge.get('cost', 0) == 0 else f"${bridge.get('cost', 'N/A')}"}
-                    </p>
-                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">
-                        <strong>Fills gaps:</strong> {', '.join(bridge.get('fills_gaps', [])[:3])}
-                    </p>
                     <div style="margin-top: 1rem;">
                         <a href="{bridge.get('url', '#')}" target="_blank"
                            style="background: #3b82f6; color: white; padding: 0.6rem 1.2rem; 
@@ -1166,39 +1097,10 @@ elif page == "🪪 Skill Passport":
     else:
         if st.button("🎨 Generate Skill Passport", type="primary"):
             with st.spinner("Creating your passport..."):
-                # Prepare user data
-                user_data = {
-                    'name': st.session_state.demographic_info.get('name', 'Anonymous') if st.session_state.demographic_info else 'Anonymous',
-                    'email': st.session_state.demographic_info.get('email', '') if st.session_state.demographic_info else '',
-                    'profile_completed': bool(st.session_state.demographic_info)
-                }
-                
-                # Get skills dictionary
-                skills = st.session_state.recognized_skills
-                
-                # Get top roles
-                top_roles = st.session_state.matches[:5] if st.session_state.matches else []
-                
-                # Get bridges/learning resources if available
-                bridges = []
-                if top_roles and isinstance(skills, dict):
-                    all_skill_ids = skills.get('hard_skills', []) + skills.get('soft_skills', [])
-                    user_skill_names = get_skill_names(all_skill_ids)
-                    gaps = top_roles[0].get('gaps', []) if top_roles else []
-                    if gaps:
-                        bridges = recommend_bridges(list(gaps), user_skill_names)[:5]
-                
-                # Generate passport
-                json_path, passport_data = generate_skill_passport(
-                    user_data,
-                    skills,
-                    top_roles,
-                    bridges
+                passport_data = generate_skill_passport(
+                    st.session_state.recognized_skills,
+                    st.session_state.matches[:5] if st.session_state.matches else []
                 )
-                
-                # Store in session state for PDF generation
-                st.session_state.passport_data = passport_data
-                st.session_state.passport_generated = True
                 
                 # Display passport
                 st.markdown(f"""
@@ -1210,44 +1112,26 @@ elif page == "🪪 Skill Passport":
                     </p>
                     <div style="background: rgba(255,255,255,0.2); padding: 2rem; 
                                 border-radius: 12px; margin-top: 2rem;">
-                        <h3>Verified Skills: {passport_data['verified_skills']['total_count']}</h3>
-                        <h3>Top Role: {passport_data.get('top_role_match', {}).get('role', 'N/A') if passport_data.get('top_role_match') else 'N/A'}</h3>
-                        <h3>Recommended Courses: {len(passport_data.get('recommended_courses', []))}</h3>
+                        <h3>Verified Skills: {len(st.session_state.recognized_skills)}</h3>
+                        <h3>Top Role Matches: {len(st.session_state.matches[:5])}</h3>
+                        <h3>Passport ID: {passport_data.get('id', 'N/A')}</h3>
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
-                
-                # Generate PDF immediately
-                with st.spinner("Creating PDF..."):
-                    demographic_info = st.session_state.demographic_info if st.session_state.demographic_info else {}
-                    pdf_path = create_pdf_passport(st.session_state.passport_data, demographic_info)
                 
                 # Download options
                 col1, col2 = st.columns(2)
                 with col1:
                     st.download_button(
                         "📥 Download JSON",
-                        data=json.dumps(st.session_state.passport_data, indent=2),
+                        data=json.dumps(passport_data, indent=2),
                         file_name="skill_passport.json",
-                        mime="application/json",
-                        use_container_width=True
+                        mime="application/json"
                     )
                 with col2:
-                    if pdf_path and os.path.exists(pdf_path):
-                        # Read PDF file for download
-                        with open(pdf_path, "rb") as pdf_file:
-                            pdf_bytes = pdf_file.read()
-                        
-                        st.download_button(
-                            "📄 Download PDF",
-                            data=pdf_bytes,
-                            file_name="ai_skills_passport.pdf",
-                            mime="application/pdf",
-                            type="primary",
-                            use_container_width=True
-                        )
-                    else:
-                        st.error("❌ PDF generation failed. Download JSON instead.")
+                    if st.button("📄 Generate PDF"):
+                        pdf_path = create_pdf_passport(passport_data)
+                        st.success(f"✅ PDF created: {pdf_path}")
 
 # ============================================================================
 # PAGE: COMMUNITY FORUMS

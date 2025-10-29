@@ -401,69 +401,316 @@ def generate_skill_passport(user_data: Dict,
     return json_path, passport
 
 
-def create_pdf_passport(passport: Dict, output_path: str = "output/skill_passport.pdf"):
+def create_pdf_passport(passport: Dict, demographic_info: Dict = None, output_path: str = "output/skill_passport.pdf"):
     """
-    Create a simple PDF version of the skill passport
+    Create a comprehensive, visually appealing PDF version of the skill passport
+    with all demographic info, skills, role matches, and skill gaps
     """
     try:
-        from fpdf import FPDF
+        print("Starting PDF generation...")
+        from reportlab.lib.pagesizes import letter, A4
+        from reportlab.lib import colors
+        from reportlab.lib.units import inch
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak, Image
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
+        from reportlab.pdfgen import canvas
+        import datetime
         
-        pdf = FPDF()
-        pdf.add_page()
-        pdf.set_auto_page_break(auto=True, margin=15)
+        print("Imports successful")
         
-        # Title
-        pdf.set_font("Arial", 'B', 20)
-        pdf.cell(0, 10, "Skill Passport", ln=True, align='C')
-        pdf.ln(5)
+        # Create PDF
+        os.makedirs('output', exist_ok=True)
+        print(f"Creating PDF at: {output_path}")
+        doc = SimpleDocTemplate(output_path, pagesize=letter,
+                               rightMargin=0.75*inch, leftMargin=0.75*inch,
+                               topMargin=1*inch, bottomMargin=0.75*inch)
         
-        # User info
-        if 'user_info' in passport and passport['user_info'].get('name'):
-            pdf.set_font("Arial", '', 12)
-            pdf.cell(0, 8, f"Name: {passport['user_info']['name']}", ln=True)
-            pdf.ln(5)
+        # Container for the 'Flowable' objects
+        elements = []
         
-        # Verified Skills
-        pdf.set_font("Arial", 'B', 14)
-        pdf.cell(0, 10, "Verified Skills", ln=True)
-        pdf.set_font("Arial", '', 11)
+        # Define styles
+        styles = getSampleStyleSheet()
         
-        hard_skills = passport['verified_skills']['hard_skills']
-        soft_skills = passport['verified_skills']['soft_skills']
+        # Custom styles
+        title_style = ParagraphStyle(
+            'CustomTitle',
+            parent=styles['Heading1'],
+            fontSize=28,
+            textColor=colors.HexColor('#3B82F6'),
+            spaceAfter=30,
+            alignment=TA_CENTER,
+            fontName='Helvetica-Bold'
+        )
         
-        pdf.multi_cell(0, 6, f"Hard Skills: {', '.join(hard_skills)}")
-        pdf.ln(2)
-        pdf.multi_cell(0, 6, f"Soft Skills: {', '.join(soft_skills)}")
-        pdf.ln(5)
+        heading_style = ParagraphStyle(
+            'CustomHeading',
+            parent=styles['Heading2'],
+            fontSize=16,
+            textColor=colors.HexColor('#1F2937'),
+            spaceAfter=12,
+            spaceBefore=20,
+            fontName='Helvetica-Bold',
+            borderColor=colors.HexColor('#3B82F6'),
+            borderWidth=0,
+            borderPadding=5,
+            backColor=colors.HexColor('#EFF6FF')
+        )
         
-        # Top Role Match
-        if passport.get('top_role_match'):
-            pdf.set_font("Arial", 'B', 14)
-            pdf.cell(0, 10, "Best Role Match", ln=True)
-            pdf.set_font("Arial", '', 11)
-            pdf.cell(0, 6, f"Role: {passport['top_role_match']['role']}", ln=True)
-            pdf.cell(0, 6, f"Match Score: {passport['top_role_match']['score']}", ln=True)
-            pdf.cell(0, 6, f"Salary Range: {passport['top_role_match']['pay_range']}", ln=True)
-            pdf.ln(5)
+        subheading_style = ParagraphStyle(
+            'CustomSubHeading',
+            parent=styles['Heading3'],
+            fontSize=13,
+            textColor=colors.HexColor('#374151'),
+            spaceAfter=8,
+            spaceBefore=12,
+            fontName='Helvetica-Bold'
+        )
         
-        # Recommended Courses
-        if passport.get('recommended_courses'):
-            pdf.set_font("Arial", 'B', 14)
-            pdf.cell(0, 10, "Recommended Learning Path", ln=True)
-            pdf.set_font("Arial", '', 10)
+        body_style = ParagraphStyle(
+            'CustomBody',
+            parent=styles['BodyText'],
+            fontSize=11,
+            textColor=colors.HexColor('#1F2937'),
+            spaceAfter=6,
+            leading=14
+        )
+        
+        # ==================== HEADER ====================
+        elements.append(Paragraph("🪪 AI SKILLS PASSPORT", title_style))
+        elements.append(Paragraph(f"<i>Verified Skill Recognition & Career Roadmap</i>", 
+                                 ParagraphStyle('subtitle', parent=body_style, alignment=TA_CENTER, 
+                                              fontSize=12, textColor=colors.HexColor('#6B7280'))))
+        elements.append(Spacer(1, 0.2*inch))
+        
+        # Date and ID
+        passport_id = f"SKP-{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
+        date_text = f"<b>Generated:</b> {datetime.datetime.now().strftime('%B %d, %Y')} | <b>Passport ID:</b> {passport_id}"
+        elements.append(Paragraph(date_text, ParagraphStyle('date', parent=body_style, alignment=TA_CENTER, fontSize=9)))
+        elements.append(Spacer(1, 0.3*inch))
+        
+        # ==================== DEMOGRAPHIC PROFILE ====================
+        if demographic_info:
+            elements.append(Paragraph("👤 DEMOGRAPHIC PROFILE", heading_style))
             
-            for i, course in enumerate(passport['recommended_courses'][:5], 1):
-                pdf.multi_cell(0, 5, 
-                    f"{i}. {course['course']} ({course['provider']}) - {course['duration']} - {course['cost']}")
+            demo_data = []
+            if demographic_info.get('gender'):
+                demo_data.append(['Gender Identity:', demographic_info['gender']])
+            if demographic_info.get('ethnicity'):
+                demo_data.append(['Ethnicity:', demographic_info['ethnicity']])
+            if demographic_info.get('background'):
+                demo_data.append(['Background:', demographic_info['background']])
+            if demographic_info.get('years_experience'):
+                demo_data.append(['Experience:', f"{demographic_info['years_experience']} years"])
+            if demographic_info.get('location'):
+                demo_data.append(['Location:', demographic_info['location']])
+            
+            if demo_data:
+                demo_table = Table(demo_data, colWidths=[2*inch, 4.5*inch])
+                demo_table.setStyle(TableStyle([
+                    ('BACKGROUND', (0, 0), (0, -1), colors.HexColor('#F3F4F6')),
+                    ('TEXTCOLOR', (0, 0), (-1, -1), colors.HexColor('#1F2937')),
+                    ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
+                    ('FONTNAME', (1, 0), (1, -1), 'Helvetica'),
+                    ('FONTSIZE', (0, 0), (-1, -1), 10),
+                    ('ALIGN', (0, 0), (0, -1), 'RIGHT'),
+                    ('ALIGN', (1, 0), (1, -1), 'LEFT'),
+                    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                    ('ROWBACKGROUNDS', (0, 0), (-1, -1), [colors.white, colors.HexColor('#F9FAFB')]),
+                    ('GRID', (0, 0), (-1, -1), 0.5, colors.HexColor('#E5E7EB')),
+                    ('LEFTPADDING', (0, 0), (-1, -1), 10),
+                    ('RIGHTPADDING', (0, 0), (-1, -1), 10),
+                    ('TOPPADDING', (0, 0), (-1, -1), 8),
+                    ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
+                ]))
+                elements.append(demo_table)
+                elements.append(Spacer(1, 0.2*inch))
         
-        pdf.ln(10)
-        pdf.set_font("Arial", 'I', 9)
-        pdf.cell(0, 5, f"Generated: {passport.get('generated_date', '2025-10-28')}", ln=True)
-        pdf.cell(0, 5, "Powered by EquiForce AI Dataset", ln=True)
+        # ==================== VERIFIED SKILLS ====================
+        elements.append(Paragraph("✨ VERIFIED SKILLS", heading_style))
         
-        pdf.output(output_path)
+        verified_skills = passport.get('verified_skills', {})
+        hard_skills = verified_skills.get('hard_skills', [])
+        soft_skills = verified_skills.get('soft_skills', [])
+        total_count = verified_skills.get('total_count', 0)
+        
+        # Skills summary
+        elements.append(Paragraph(f"<b>Total Skills Identified:</b> {total_count}", subheading_style))
+        
+        # Hard Skills
+        if hard_skills:
+            elements.append(Paragraph("💻 Technical Skills:", subheading_style))
+            skill_text = " • ".join(hard_skills)
+            elements.append(Paragraph(skill_text, body_style))
+            elements.append(Spacer(1, 0.1*inch))
+        
+        # Soft Skills
+        if soft_skills:
+            elements.append(Paragraph("🤝 Soft Skills:", subheading_style))
+            skill_text = " • ".join(soft_skills)
+            elements.append(Paragraph(skill_text, body_style))
+            elements.append(Spacer(1, 0.2*inch))
+        
+        # ==================== TOP ROLE MATCHES ====================
+        elements.append(Paragraph("🧠 TOP AI ROLE MATCHES", heading_style))
+        
+        top_role = passport.get('top_role_match')
+        if top_role:
+            # Best match box
+            best_match_data = [
+                ['🎯 BEST MATCH', ''],
+                ['Role:', top_role['role']],
+                ['Match Score:', top_role['score']],
+                ['Salary Range:', top_role.get('pay_range', 'N/A')]
+            ]
+            
+            best_match_table = Table(best_match_data, colWidths=[2*inch, 4.5*inch])
+            best_match_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3B82F6')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 12),
+                ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
+                ('SPAN', (0, 0), (-1, 0)),
+                ('BACKGROUND', (0, 1), (0, -1), colors.HexColor('#F3F4F6')),
+                ('FONTNAME', (0, 1), (0, -1), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 1), (-1, -1), 10),
+                ('ALIGN', (0, 1), (0, -1), 'RIGHT'),
+                ('ALIGN', (1, 1), (1, -1), 'LEFT'),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#F9FAFB')]),
+                ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#3B82F6')),
+                ('LEFTPADDING', (0, 0), (-1, -1), 10),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 10),
+                ('TOPPADDING', (0, 0), (-1, -1), 10),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 10),
+            ]))
+            elements.append(best_match_table)
+            elements.append(Spacer(1, 0.15*inch))
+        
+        # Alternative roles
+        alt_roles = passport.get('alternative_roles', [])
+        if alt_roles:
+            elements.append(Paragraph("Alternative Career Paths:", subheading_style))
+            alt_data = [['#', 'Role', 'Match Score']]
+            for idx, role in enumerate(alt_roles, 2):
+                alt_data.append([str(idx), role['role'], role['score']])
+            
+            alt_table = Table(alt_data, colWidths=[0.5*inch, 4*inch, 2*inch])
+            alt_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#E5E7EB')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.HexColor('#1F2937')),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 10),
+                ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#F9FAFB')]),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.HexColor('#E5E7EB')),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('LEFTPADDING', (0, 0), (-1, -1), 8),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+                ('TOPPADDING', (0, 0), (-1, -1), 6),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+            ]))
+            elements.append(alt_table)
+            elements.append(Spacer(1, 0.2*inch))
+        
+        # ==================== SKILL GAPS ====================
+        skill_gaps = passport.get('skill_gaps', [])
+        if skill_gaps:
+            elements.append(Paragraph("📚 SKILL GAPS & LEARNING PATH", heading_style))
+            elements.append(Paragraph("Skills to develop for your target role:", subheading_style))
+            
+            gap_text = " • ".join(skill_gaps)
+            elements.append(Paragraph(gap_text, body_style))
+            elements.append(Spacer(1, 0.15*inch))
+        
+        # ==================== RECOMMENDED COURSES ====================
+        courses = passport.get('recommended_courses', [])
+        if courses:
+            elements.append(Paragraph("🎓 RECOMMENDED LEARNING RESOURCES", subheading_style))
+            
+            course_data = [['#', 'Course', 'Provider', 'Duration', 'Cost']]
+            for idx, course in enumerate(courses, 1):
+                course_data.append([
+                    str(idx),
+                    course['course'],
+                    course['provider'],
+                    course['duration'],
+                    course['cost']
+                ])
+            
+            course_table = Table(course_data, colWidths=[0.4*inch, 2.5*inch, 1.5*inch, 1*inch, 1.1*inch])
+            course_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#10B981')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 9),
+                ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#F0FDF4')]),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.HexColor('#10B981')),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (3, 0), (4, -1), 'CENTER'),
+                ('FONTSIZE', (0, 1), (-1, -1), 8),
+                ('LEFTPADDING', (0, 0), (-1, -1), 5),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 5),
+                ('TOPPADDING', (0, 0), (-1, -1), 6),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+            ]))
+            elements.append(course_table)
+            elements.append(Spacer(1, 0.2*inch))
+        
+        # ==================== BADGES & VERIFICATION ====================
+        elements.append(Paragraph("🏆 ACHIEVEMENT BADGES", heading_style))
+        
+        badges = passport.get('badges', {})
+        badge_data = []
+        if badges.get('skills_verified'):
+            badge_data.append(['✅ Skills Verified', 'Your skills have been analyzed and validated'])
+        if badges.get('role_matched'):
+            badge_data.append(['✅ Career Path Identified', 'AI roles matched based on your profile'])
+        if badges.get('learning_path_created'):
+            badge_data.append(['✅ Learning Roadmap Created', 'Personalized courses recommended'])
+        
+        if badge_data:
+            badge_table = Table(badge_data, colWidths=[2*inch, 4.5*inch])
+            badge_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, -1), colors.HexColor('#FEF3C7')),
+                ('TEXTCOLOR', (0, 0), (-1, -1), colors.HexColor('#92400E')),
+                ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, -1), 10),
+                ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#F59E0B')),
+                ('LEFTPADDING', (0, 0), (-1, -1), 10),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 10),
+                ('TOPPADDING', (0, 0), (-1, -1), 8),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
+            ]))
+            elements.append(badge_table)
+        
+        elements.append(Spacer(1, 0.3*inch))
+        
+        # ==================== FOOTER ====================
+        footer_text = f"""
+        <para alignment='center' fontSize='8' textColor='#6B7280'>
+        <i>This AI Skills Passport is generated by the Enhanced Skill Recognition Engine.<br/>
+        For women, underrepresented minorities, and career changers entering AI.<br/>
+        © 2025 TechNation | Passport ID: {passport_id}</i>
+        </para>
+        """
+        elements.append(Paragraph(footer_text, body_style))
+        
+        # Build PDF
+        print("Building PDF document...")
+        doc.build(elements)
+        print(f"PDF created successfully at: {output_path}")
+        
         return output_path
         
+    except ImportError as e:
+        print(f"Missing required library: {e}")
+        print("Install with: pip install reportlab")
+        return None
     except Exception as e:
         print(f"Error creating PDF: {e}")
+        import traceback
+        traceback.print_exc()
         return None

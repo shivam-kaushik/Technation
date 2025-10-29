@@ -1,0 +1,385 @@
+{
+  "women_leaders": [
+    {
+      "id": 1,
+      "name": "Dr. Fei-Fei Li",
+      "title": "Co-Director, Stanford HAI",
+      "photo_url": "https://via.placeholder.com/150",
+      "country": "USA",
+      "ethnicity": "East Asian",
+      "specialization": "Computer Vision",
+      "bio": "Pioneer in AI and computer vision, creator of ImageNet. Co-director of Stanford's Human-Centered AI Institute.",
+      "keynote_link": "https://www.youtube.com/watch?v=example1",
+      "linkedin": "https://linkedin.com/in/feifeili",
+      "achievements": [
+        "Creator of ImageNet dataset",
+        "Former VP/Chief Scientist of AI at Google Cloud",
+        "TIME 100 Most Influential People"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Dr. Timnit Gebru",
+      "title": "Founder, DAIR Institute",
+      "photo_url": "https://via.placeholder.com/150",
+      "country": "Ethiopia/USA",
+      "ethnicity": "Black",
+      "specialization": "AI Ethics",
+      "bio": "Leading voice in AI ethics and algorithmic bias. Founder of Distributed AI Research Institute (DAIR).",
+      "keynote_link": "https://www.youtube.com/watch?v=example2",
+      "linkedin": "https://linkedin.com/in/timnitgebru",
+      "achievements": [
+        "Co-founder of Black in AI",
+        "Pioneering research on algorithmic bias",
+        "Named one of TIME's 100 Most Influential People"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Dr. Joy Buolamwini",
+      "title": "Founder, Algorithmic Justice League",
+      "photo_url": "https://via.placeholder.com/150",
+      "country": "USA/Ghana",
+      "ethnicity": "Black",
+      "specialization": "Algorithmic Bias",
+      "bio": "Computer scientist and digital activist working on algorithmic bias and facial recognition ethics.",
+      "keynote_link": "https://www.ted.com/talks/joy_buolamwini",
+      "linkedin": "https://linkedin.com/in/joybuolamwini",
+      "achievements": [
+        "Rhodes Scholar",
+        "Fulbright Fellow",
+        "Creator of 'Coded Bias' documentary"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Dr. Cynthia Breazeal",
+      "title": "Director, MIT Media Lab Personal Robots Group",
+      "photo_url": "https://via.placeholder.com/150",
+      "country": "USA",
+      "ethnicity": "White",
+      "specialization": "Social Robotics",
+      "bio": "Pioneer in social robotics and human-robot interaction. Creator of Jibo, the world's first social robot.",
+      "keynote_link": "https://www.youtube.com/watch?v=example3",
+      "linkedin": "https://linkedin.com/in/cynthiabreazeal",
+      "achievements": [
+        "Founded Jibo Inc.",
+        "MIT Professor",
+        "30+ patents in social robotics"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Dr. Ayanna Howard",
+      "title": "Dean of Engineering, Ohio State University",
+      "photo_url": "https://via.placeholder.com/150",
+      "country": "USA",
+      "ethnicity": "Black",
+      "specialization": "Robotics",
+      "bio": "Robotics engineer and educator, former NASA researcher specializing in autonomous systems.",
+      "keynote_link": "https://www.youtube.com/watch?v=example4",
+      "linkedin": "https://linkedin.com/in/ayannahoward",
+      "achievements": [
+        "20+ years at NASA JPL",
+        "Founded own AI/robotics company",
+        "Published 250+ peer-reviewed papers"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Rumman Chowdhury",
+      "title": "CEO, Humane Intelligence",
+      "photo_url": "https://via.placeholder.com/150",
+      "country": "Bangladesh/USA",
+      "ethnicity": "South Asian",
+      "specialization": "Responsible AI",
+      "bio": "Data scientist focused on algorithmic fairness and responsible AI. Former Twitter ML Ethics lead.",
+      "keynote_link": "https://www.youtube.com/watch?v=example5",
+      "linkedin": "https://linkedin.com/in/rummanchowdhury",
+      "achievements": [
+        "Former Twitter ML Ethics Director",
+        "Accenture's Responsible AI lead",
+        "PhD in Quantitative Social Science"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Dr. Kate Crawford",
+      "title": "Research Professor, USC & Co-founder, AI Now Institute",
+      "photo_url": "https://via.placeholder.com/150",
+      "country": "Australia/USA",
+      "ethnicity": "White",
+      "specialization": "AI & Society",
+      "bio": "Leading scholar on social implications of AI. Author of 'Atlas of AI'.",
+      "keynote_link": "https://www.youtube.com/watch?v=example6",
+      "linkedin": "https://linkedin.com/in/katecrawford",
+      "achievements": [
+        "Co-founded AI Now Institute at NYU",
+        "Principal Researcher at Microsoft Research",
+        "Author of 'Atlas of AI'"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Dr. Rediet Abebe",
+      "title": "Assistant Professor, UC Berkeley",
+      "photo_url": "https://via.placeholder.com/150",
+      "country": "Ethiopia/USA",
+      "ethnicity": "Black",
+      "specialization": "AI for Social Good",
+      "bio": "Computer scientist using AI and algorithms to understand and address social inequality.",
+      "keynote_link": "https://www.youtube.com/watch?v=example7",
+      "linkedin": "https://linkedin.com/in/redietabebe",
+      "achievements": [
+        "Co-founder, Black in AI",
+        "Co-founder, MD4SG (Mechanism Design for Social Good)",
+        "Harvard Society of Fellows"
+      ]
+    }
+  ],
+  "women_hub": {
+    "scholarships": [
+      {
+        "name": "Women Techmakers Scholars Program",
+        "provider": "Google",
+        "amount": "$10,000",
+        "deadline": "2025-12-15",
+        "eligibility": "Women studying computer science or related field",
+        "link": "https://www.womentechmakers.com/scholars",
+        "regions": ["Global"]
+      },
+      {
+        "name": "AnitaB.org Scholarships",
+        "provider": "AnitaB.org",
+        "amount": "Varies",
+        "deadline": "2025-11-30",
+        "eligibility": "Women in computing",
+        "link": "https://anitab.org/awards-grants/",
+        "regions": ["USA", "International"]
+      },
+      {
+        "name": "Break Through Tech AI Program",
+        "provider": "Cornell Tech",
+        "amount": "Free + Stipend",
+        "deadline": "2025-10-31",
+        "eligibility": "Women and non-binary students in NYC area",
+        "link": "https://breakthroughtech.org",
+        "regions": ["USA - NYC"]
+      },
+      {
+        "name": "Women in AI Awards",
+        "provider": "Women in AI",
+        "amount": "$5,000",
+        "deadline": "2026-01-15",
+        "eligibility": "Women working in AI",
+        "link": "https://www.womeninai.co/awards",
+        "regions": ["Global"]
+      },
+      {
+        "name": "AI4ALL Summer Program",
+        "provider": "AI4ALL",
+        "amount": "Full scholarship available",
+        "deadline": "2025-12-01",
+        "eligibility": "High school students from underrepresented groups",
+        "link": "https://ai-4-all.org",
+        "regions": ["USA"]
+      }
+    ],
+    "mentorship_programs": [
+      {
+        "name": "Connected Women in AI",
+        "description": "1-on-1 mentorship pairing women in tech with AI leaders",
+        "duration": "6 months",
+        "cost": "Free",
+        "application_link": "https://connectedwomen.ai",
+        "target_audience": "Women in AI/ML"
+      },
+      {
+        "name": "TechGirls Mentorship",
+        "description": "Technology mentorship for young women aged 15-17",
+        "duration": "1 year",
+        "cost": "Free",
+        "application_link": "https://techgirlsmentorship.org",
+        "target_audience": "High school girls"
+      },
+      {
+        "name": "Women Who Code Mentorship",
+        "description": "Career guidance and technical mentorship",
+        "duration": "3 months",
+        "cost": "Free (membership)",
+        "application_link": "https://www.womenwhocode.com/mentor",
+        "target_audience": "Women in tech"
+      },
+      {
+        "name": "Girls Who Code Alumni Program",
+        "description": "Ongoing mentorship for GWC alumni entering workforce",
+        "duration": "Ongoing",
+        "cost": "Free",
+        "application_link": "https://girlswhocode.com/alumni",
+        "target_audience": "GWC alumni"
+      },
+      {
+        "name": "Black in AI Mentorship",
+        "description": "Mentorship for Black AI researchers and practitioners",
+        "duration": "1 year",
+        "cost": "Free",
+        "application_link": "https://blackinai.github.io",
+        "target_audience": "Black AI professionals"
+      }
+    ],
+    "communities": [
+      {
+        "name": "Women in Machine Learning (WiML)",
+        "members": "10,000+",
+        "focus": "ML research and practice",
+        "link": "https://wimlworkshop.org"
+      },
+      {
+        "name": "PyLadies",
+        "members": "100,000+",
+        "focus": "Python programming",
+        "link": "https://pyladies.com"
+      },
+      {
+        "name": "AI4ALL",
+        "members": "5,000+",
+        "focus": "Increasing diversity in AI",
+        "link": "https://ai-4-all.org"
+      },
+      {
+        "name": "Women in Data Science (WiDS)",
+        "members": "100,000+",
+        "focus": "Data science community",
+        "link": "https://www.widsconference.org"
+      },
+      {
+        "name": "Latinas in Tech",
+        "members": "20,000+",
+        "focus": "Latina tech professionals",
+        "link": "https://latinasintech.org"
+      }
+    ]
+  },
+  "mentors": [
+    {
+      "id": 1,
+      "name": "Maya Patel",
+      "photo_url": "https://via.placeholder.com/200",
+      "ethnicity": "South Asian",
+      "experience_years": 15,
+      "current_role": "Senior ML Engineer",
+      "industry": "Healthcare AI",
+      "company": "MedTech Innovations",
+      "specializations": ["Healthcare AI", "NLP", "Clinical Decision Support"],
+      "story": "I immigrated from India at 25 with a pharmacy degree and $500. Transitioning to AI felt impossible—I had no CS background and faced constant doubt. But I leveraged my healthcare domain expertise, took evening coding bootcamps, and built a portfolio of healthcare projects. Today, I lead a team building AI diagnostic tools. My advice: Your 'non-traditional' background is your superpower. Domain expertise + AI = unstoppable combination.",
+      "available_for": ["Career guidance", "Technical mentorship", "Portfolio review"],
+      "languages": ["English", "Hindi", "Gujarati"],
+      "timezone": "EST"
+    },
+    {
+      "id": 2,
+      "name": "Keisha Williams",
+      "photo_url": "https://via.placeholder.com/200",
+      "ethnicity": "Black",
+      "experience_years": 12,
+      "current_role": "AI Research Scientist",
+      "industry": "Financial Services",
+      "company": "Goldman Sachs",
+      "specializations": ["Algorithmic Trading", "Risk Modeling", "Deep Learning"],
+      "story": "Growing up in South Side Chicago, I never saw anyone who looked like me in tech. I studied economics, not CS, and felt like an imposter when I started coding. After 8 years in traditional finance, I pivoted to AI at 30. The transition was hard—I faced bias, doubt, and loneliness. But I found Black in AI community, got mentors who believed in me, and now I'm paying it forward. You belong here. Your perspective is exactly what AI needs.",
+      "available_for": ["Career transition coaching", "Overcoming imposter syndrome", "Breaking into finance tech"],
+      "languages": ["English"],
+      "timezone": "EST"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Sofia Rodriguez",
+      "photo_url": "https://via.placeholder.com/200",
+      "ethnicity": "Hispanic/Latino",
+      "experience_years": 18,
+      "current_role": "Director of AI",
+      "industry": "E-commerce",
+      "company": "Amazon",
+      "specializations": ["Recommendation Systems", "Computer Vision", "Personalization"],
+      "story": "Raised by a single mother in Mexico City, I was the first in my family to attend university. I earned a PhD in Computer Science while working night shifts to support my family. As a Latina woman in tech, I've faced everything—accent bias, being mistaken for admin staff, having my ideas credited to male colleagues. But I persisted. I'm now a Director at Amazon leading recommendation AI. My message: Your accent is an asset (bilingual = competitive edge!), your struggle builds resilience, and we need more Latinx voices in AI leadership.",
+      "available_for": ["PhD guidance", "Leadership coaching", "Work-life balance"],
+      "languages": ["English", "Spanish"],
+      "timezone": "PST"
+    },
+    {
+      "id": 4,
+      "name": "Jennifer Chen",
+      "photo_url": "https://via.placeholder.com/200",
+      "ethnicity": "East Asian",
+      "experience_years": 10,
+      "current_role": "Lead AI Product Manager",
+      "industry": "Autonomous Vehicles",
+      "company": "Waymo",
+      "specializations": ["Robotics", "Computer Vision", "Product Strategy"],
+      "story": "Immigrant from Taiwan, I faced the 'bamboo ceiling'—technically excellent but overlooked for leadership. For years, I was the 'quiet Asian girl' who did brilliant work but got no credit. I learned to advocate loudly for myself, took improv classes to improve communication, and strategically built allies. Breaking into product management from engineering at 35 felt late, but it was my breakthrough. Now I lead product strategy for autonomous vehicles. Asian women: technical excellence alone won't get you promoted. Visibility + advocacy = advancement.",
+      "available_for": ["Breaking bamboo ceiling", "Engineering to PM transition", "Communication skills"],
+      "languages": ["English", "Mandarin", "Taiwanese"],
+      "timezone": "PST"
+    },
+    {
+      "id": 5,
+      "name": "Sarah Thompson",
+      "photo_url": "https://via.placeholder.com/200",
+      "ethnicity": "White",
+      "experience_years": 8,
+      "current_role": "ML Consultant",
+      "industry": "Consulting",
+      "company": "Self-employed",
+      "specializations": ["NLP", "MLOps", "Small Business AI"],
+      "story": "After having twins, I took a 4-year career break. Returning to tech felt terrifying—my skills were outdated, I had a resume gap, and I was competing with younger candidates. I started by taking free online courses during nap times, contributed to open source projects, and built a portfolio on GitHub. I didn't hide my career break—I framed it as 'gained project management skills raising twins!' Now I run my own ML consulting firm helping small businesses adopt AI. Career breaks don't disqualify you—they give you perspective that makes you better.",
+      "available_for": ["Career break re-entry", "Freelancing/consulting", "Work-life integration"],
+      "languages": ["English"],
+      "timezone": "CST"
+    },
+    {
+      "id": 6,
+      "name": "Dr. Amara Okafor",
+      "photo_url": "https://via.placeholder.com/200",
+      "ethnicity": "Black",
+      "experience_years": 14,
+      "current_role": "Chief AI Officer",
+      "industry": "Healthcare",
+      "company": "Mayo Clinic",
+      "specializations": ["Medical Imaging", "Diagnostic AI", "Healthcare Ethics"],
+      "story": "Born in Nigeria, educated in the UK, working in the USA—I'm a triple immigrant navigating three cultures. As a Black woman with a PhD in medical AI, I've been called 'too aggressive' when advocating for my ideas (code for 'uppity Black woman'). I've had my credentials questioned, my leadership undermined, and been paid 20% less than white male peers for the same role. But I didn't let bias define me. I documented everything, found allies in HR, and negotiated fiercely. Now I'm CAO at Mayo Clinic, building AI that works for ALL patients, not just those represented in biased datasets. Fight for your worth—you ARE qualified.",
+      "available_for": ["Navigating workplace bias", "Salary negotiation", "Leadership for underrepresented minorities"],
+      "languages": ["English", "Igbo", "Yoruba"],
+      "timezone": "CST"
+    },
+    {
+      "id": 7,
+      "name": "Priya Sharma",
+      "photo_url": "https://via.placeholder.com/200",
+      "ethnicity": "South Asian",
+      "experience_years": 6,
+      "current_role": "AI Startup Founder",
+      "industry": "EdTech",
+      "company": "LearnAI (Founder & CEO)",
+      "specializations": ["Educational AI", "Adaptive Learning", "Entrepreneurship"],
+      "story": "I was a high school teacher in Mumbai who saw firsthand how one-size-fits-all education failed students. With no tech background and no funding, I taught myself to code at 28, built an AI-powered personalized learning platform on weekends, and pitched it to 100+ investors. 99 said no. One said yes. That was 4 years ago. Today, LearnAI serves 50,000 students across India. As a woman founder in India's male-dominated tech ecosystem, I faced investors asking 'Where's your technical co-founder?' (I AM the technical founder!) and 'Who will watch your kids?' (My husband and I split childcare 50/50). To aspiring women founders: You don't need permission. Build it, launch it, prove them wrong.",
+      "available_for": ["Startup founding", "Self-taught coding", "Balancing parenthood + career"],
+      "languages": ["English", "Hindi", "Marathi"],
+      "timezone": "IST"
+    },
+    {
+      "id": 8,
+      "name": "Maria Gonzalez",
+      "photo_url": "https://via.placeholder.com/200",
+      "ethnicity": "Hispanic/Latino",
+      "experience_years": 9,
+      "current_role": "Senior Data Scientist",
+      "industry": "Retail",
+      "company": "Target",
+      "specializations": ["Demand Forecasting", "Customer Analytics", "Supply Chain AI"],
+      "story": "Daughter of migrant farmworkers in California, I was the first to finish high school, let alone college. I studied business (not CS!) and worked retail for 5 years before discovering data science. At 27, I took a massive pay cut to join a data science bootcamp, living in my car for 3 months to save money. The bootcamp was intense—I was one of only 2 Latinas in a cohort of 40. I felt out of place, struggled with imposter syndrome, but my retail experience became my edge. I understood customer behavior intuitively. Now I lead retail AI projects at Target. To first-gen students: Your 'non-traditional' path is your advantage. Use it.",
+      "available_for": ["Career switching", "First-gen professional support", "Retail/business → AI transition"],
+      "languages": ["English", "Spanish"],
+      "timezone": "CST"
+    }
+  ]
+}
