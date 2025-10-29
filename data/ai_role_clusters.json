@@ -1,0 +1,114 @@
+[
+  {
+    "role_id": "data_analyst",
+    "role_name": "Data Analyst",
+    "description": "Analyzes data to extract insights and support business decisions",
+    "icon": "📊",
+    "required_skills": [
+      "excel", "sql", "data_analysis", "tableau", "power_bi", "python"
+    ],
+    "soft_skills": [
+      "problem_solving", "communication", "attention_to_detail"
+    ],
+    "pay_range": "$55,000 - $85,000",
+    "demand": "high"
+  },
+  {
+    "role_id": "ai_marketing_assistant",
+    "role_name": "AI Marketing Assistant",
+    "description": "Uses AI tools to optimize marketing campaigns and content creation",
+    "icon": "🤖",
+    "required_skills": [
+      "digital_marketing", "ai_tools", "google_analytics", "excel", "crm"
+    ],
+    "soft_skills": [
+      "creativity", "communication", "adaptability"
+    ],
+    "pay_range": "$45,000 - $70,000",
+    "demand": "high"
+  },
+  {
+    "role_id": "business_intelligence_trainee",
+    "role_name": "Business Intelligence Trainee",
+    "description": "Develops dashboards and reports to support business intelligence",
+    "icon": "🧮",
+    "required_skills": [
+      "excel", "sql", "power_bi", "tableau", "data_analysis"
+    ],
+    "soft_skills": [
+      "problem_solving", "teamwork", "time_management"
+    ],
+    "pay_range": "$40,000 - $60,000",
+    "demand": "medium"
+  },
+  {
+    "role_id": "junior_data_scientist",
+    "role_name": "Junior Data Scientist",
+    "description": "Builds predictive models and performs advanced analytics",
+    "icon": "🔬",
+    "required_skills": [
+      "python", "machine_learning", "sql", "data_analysis", "r_programming"
+    ],
+    "soft_skills": [
+      "problem_solving", "creativity", "communication"
+    ],
+    "pay_range": "$65,000 - $95,000",
+    "demand": "very_high"
+  },
+  {
+    "role_id": "ai_operations_coordinator",
+    "role_name": "AI Operations Coordinator",
+    "description": "Manages AI tool implementation and coordinates cross-functional AI projects",
+    "icon": "⚙️",
+    "required_skills": [
+      "project_management", "ai_tools", "business_analysis", "excel"
+    ],
+    "soft_skills": [
+      "leadership", "communication", "adaptability"
+    ],
+    "pay_range": "$50,000 - $75,000",
+    "demand": "high"
+  },
+  {
+    "role_id": "customer_insights_analyst",
+    "role_name": "Customer Insights Analyst",
+    "description": "Analyzes customer data to improve user experience and retention",
+    "icon": "👥",
+    "required_skills": [
+      "excel", "google_analytics", "sql", "data_analysis", "crm"
+    ],
+    "soft_skills": [
+      "customer_service", "communication", "problem_solving"
+    ],
+    "pay_range": "$50,000 - $75,000",
+    "demand": "medium"
+  },
+  {
+    "role_id": "digital_transformation_assistant",
+    "role_name": "Digital Transformation Assistant",
+    "description": "Supports organizations in adopting digital tools and AI technologies",
+    "icon": "🚀",
+    "required_skills": [
+      "project_management", "ai_tools", "business_analysis", "digital_marketing"
+    ],
+    "soft_skills": [
+      "adaptability", "communication", "leadership"
+    ],
+    "pay_range": "$48,000 - $72,000",
+    "demand": "high"
+  },
+  {
+    "role_id": "junior_ml_engineer",
+    "role_name": "Junior ML Engineer",
+    "description": "Develops and deploys machine learning models",
+    "icon": "🧠",
+    "required_skills": [
+      "python", "machine_learning", "sql", "cloud_computing", "data_analysis"
+    ],
+    "soft_skills": [
+      "problem_solving", "teamwork", "creativity"
+    ],
+    "pay_range": "$70,000 - $100,000",
+    "demand": "very_high"
+  }
+]

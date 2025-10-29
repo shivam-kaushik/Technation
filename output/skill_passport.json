@@ -1,0 +1,56 @@
+{
+  "user_info": {
+    "name": "Shivam Kaushik",
+    "date": "2025-10-28"
+  },
+  "verified_skills": {
+    "hard_skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning",
+      "Tableau",
+      "JavaScript",
+      "HTML/CSS",
+      "Project Management",
+      "Accounting",
+      "Cloud Computing",
+      "Data Entry"
+    ],
+    "soft_skills": [
+      "Attention to Detail"
+    ],
+    "total_count": 12
+  },
+  "top_role_match": {
+    "role": "Junior ML Engineer",
+    "score": "81.8%",
+    "pay_range": "$70,000 - $100,000"
+  },
+  "alternative_roles": [
+    {
+      "role": "Data Analyst",
+      "score": "79.0%"
+    },
+    {
+      "role": "Junior Data Scientist",
+      "score": "75.4%"
+    },
+    {
+      "role": "Business Intelligence Trainee",
+      "score": "70.7%"
+    }
+  ],
+  "skill_gaps": [
+    "Teamwork",
+    "Creativity",
+    "Problem Solving"
+  ],
+  "recommended_courses": [],
+  "badges": {
+    "skills_verified": true,
+    "role_matched": true,
+    "learning_path_created": false
+  },
+  "generated_date": "2025-10-28"
+}

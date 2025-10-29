@@ -1,0 +1,192 @@
+{
+  "demographics": {
+    "gender": {
+      "woman": {
+        "challenges": [
+          "Gender pay gap in tech",
+          "Underrepresentation in leadership",
+          "Career breaks due to caregiving",
+          "Imposter syndrome",
+          "Lack of female mentors"
+        ],
+        "advantages": [
+          "Strong communication skills",
+          "Collaborative leadership style",
+          "High emotional intelligence",
+          "Detail-oriented approach"
+        ],
+        "recommended_focus": ["Leadership roles", "Client-facing positions", "Team coordination"],
+        "salary_adjustment": 0.92,
+        "bias_awareness": "Women often undersell their skills by 30%. Your extracted skills may represent MORE capability than listed."
+      },
+      "man": {
+        "challenges": [
+          "High competition in tech",
+          "Pressure to be primary earner",
+          "Limited work-life balance"
+        ],
+        "advantages": [
+          "Strong network in tech",
+          "Mentorship opportunities",
+          "Leadership expectations"
+        ],
+        "recommended_focus": ["Technical leadership", "Architecture roles"],
+        "salary_adjustment": 1.0,
+        "bias_awareness": "Standard career progression expected."
+      },
+      "non_binary": {
+        "challenges": [
+          "Workplace discrimination",
+          "Lack of inclusive policies",
+          "Limited representation"
+        ],
+        "advantages": [
+          "Unique perspective",
+          "Bridge multiple viewpoints"
+        ],
+        "recommended_focus": ["Inclusive product design", "DEI-focused roles"],
+        "salary_adjustment": 0.95,
+        "bias_awareness": "Your unique perspective is valuable in creating inclusive AI."
+      }
+    },
+    "ethnicity": {
+      "white": {
+        "representation": "Overrepresented in tech (68%)",
+        "challenges": ["High competition"],
+        "advantages": ["Strong networks", "Mentorship access"],
+        "equity_note": "Standard career path. Focus on leveraging existing networks."
+      },
+      "south_asian": {
+        "representation": "Well-represented in tech (13%)",
+        "challenges": ["Accent bias", "Leadership ceiling"],
+        "advantages": ["Strong STEM education", "Technical depth", "Global perspective"],
+        "equity_note": "Leverage technical expertise. Seek leadership development programs.",
+        "cultural_strengths": ["Analytical thinking", "Mathematical aptitude", "Problem-solving"]
+      },
+      "east_asian": {
+        "representation": "Well-represented in tech (20%)",
+        "challenges": ["Bamboo ceiling", "Communication stereotypes"],
+        "advantages": ["Technical excellence", "Work ethic", "Detail-oriented"],
+        "equity_note": "Technical skills are strong. Focus on visibility and communication training.",
+        "cultural_strengths": ["Precision", "Long-term thinking", "Team harmony"]
+      },
+      "black": {
+        "representation": "Underrepresented in tech (7%)",
+        "challenges": ["Systemic barriers", "Limited networks", "Unconscious bias"],
+        "advantages": ["Resilience", "Diverse perspective", "Innovation"],
+        "equity_note": "Your perspective brings valuable diversity. Seek companies with strong DEI commitments.",
+        "cultural_strengths": ["Creativity", "Adaptability", "Community focus"],
+        "special_programs": ["Black in AI", "NSBE", "Code2040", "AfroTech"]
+      },
+      "hispanic_latino": {
+        "representation": "Underrepresented in tech (8%)",
+        "challenges": ["Language barriers", "Limited STEM exposure", "Network gaps"],
+        "advantages": ["Bilingual capability", "Cultural bridge", "Growing market"],
+        "equity_note": "Bilingual skills are increasingly valuable. Highlight cross-cultural competence.",
+        "cultural_strengths": ["Relationship building", "Adaptability", "Multilingual"],
+        "special_programs": ["Latinos in Tech", "SHPE", "Techqueria"]
+      }
+    },
+    "background": {
+      "non_ai_stem": {
+        "label": "STEM (Non-AI)",
+        "transition_difficulty": "Easy",
+        "transferable_skills": ["Mathematical thinking", "Problem solving", "Data analysis"],
+        "bridge_time": "3-6 months",
+        "success_rate": "High (75%)",
+        "recommended_path": ["Python basics", "ML fundamentals", "AI applications"],
+        "encouragement": "Your STEM background gives you a strong foundation. Focus on AI-specific tools."
+      },
+      "non_ai_non_stem": {
+        "label": "Non-STEM",
+        "transition_difficulty": "Moderate",
+        "transferable_skills": ["Critical thinking", "Communication", "Domain expertise"],
+        "bridge_time": "6-12 months",
+        "success_rate": "Moderate (60%)",
+        "recommended_path": ["Foundations of AI", "No-code AI tools", "Business applications"],
+        "encouragement": "Your domain expertise is valuable! AI needs diverse perspectives."
+      },
+      "career_break": {
+        "label": "Career Break/Gap",
+        "transition_difficulty": "Moderate",
+        "transferable_skills": ["Project management", "Life experience", "Resilience"],
+        "bridge_time": "6-9 months",
+        "success_rate": "Good (65%)",
+        "recommended_path": ["Refresher courses", "Portfolio projects", "Networking"],
+        "encouragement": "Career breaks bring valuable perspective. Frame gaps as growth periods."
+      },
+      "self_taught": {
+        "label": "Self-Taught",
+        "transition_difficulty": "Variable",
+        "transferable_skills": ["Self-motivation", "Continuous learning", "Resourcefulness"],
+        "bridge_time": "3-9 months",
+        "success_rate": "Good (70%)",
+        "recommended_path": ["Portfolio building", "Certifications", "Open source contributions"],
+        "encouragement": "Self-taught developers often excel. Build a strong portfolio to showcase skills."
+      }
+    }
+  },
+  "intersectional_factors": {
+    "woman_black_non_stem": {
+      "amplified_challenges": ["Triple minority status", "Limited role models", "Network gaps"],
+      "unique_strengths": ["Diverse perspective", "Resilience", "Innovation"],
+      "support_programs": ["Black Girls Code", "Women Who Code", "Black in AI"],
+      "mentorship_priority": "High",
+      "salary_adjustment": 0.85,
+      "encouragement": "You bring a critically needed perspective to AI. Companies with strong DEI are actively seeking your profile."
+    },
+    "woman_south_asian_non_stem": {
+      "amplified_challenges": ["Gender + cultural expectations", "Career breaks"],
+      "unique_strengths": ["Bilingual", "Cultural bridge", "Educational value"],
+      "support_programs": ["Women in AI", "South Asian Women in Tech"],
+      "mentorship_priority": "High",
+      "salary_adjustment": 0.88
+    },
+    "woman_white_career_break": {
+      "amplified_challenges": ["Resume gaps", "Age bias", "Skill currency"],
+      "unique_strengths": ["Life experience", "Maturity", "Soft skills"],
+      "support_programs": ["Path Forward", "Mom Relaunch", "Career Returners"],
+      "mentorship_priority": "Medium",
+      "salary_adjustment": 0.90
+    }
+  },
+  "bias_mitigation": {
+    "cv_keywords_to_reframe": {
+      "assisted": "collaborated",
+      "helped": "contributed to",
+      "coordinated": "led",
+      "supported": "enabled",
+      "participated": "drove"
+    },
+    "confidence_boosters": {
+      "woman": "Research shows women apply only when they meet 100% of qualifications, while men apply at 60%. You likely qualify for MORE than you think.",
+      "underrepresented": "Diversity is a competitive advantage. Companies are actively seeking diverse talent.",
+      "career_break": "Career breaks demonstrate resilience and work-life integration skills valued by modern employers."
+    }
+  },
+  "company_recommendations": {
+    "high_dei_commitment": [
+      "Salesforce",
+      "Microsoft",
+      "Google",
+      "Adobe",
+      "Intel",
+      "Accenture",
+      "IBM",
+      "Cisco"
+    ],
+    "startup_friendly_to_diverse": [
+      "Lattice",
+      "Notion",
+      "Airtable",
+      "Figma",
+      "Canva"
+    ],
+    "return_to_work_programs": [
+      "Amazon Career Choice",
+      "Apple Return to Work",
+      "Goldman Sachs Returnship",
+      "Path Forward Partners"
+    ]
+  }
+}

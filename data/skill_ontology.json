@@ -1,0 +1,206 @@
+{
+  "hard_skills": [
+    {
+      "id": "python",
+      "name": "Python",
+      "category": "Programming",
+      "keywords": ["python", "py", "django", "flask", "pandas", "numpy"],
+      "level": "technical"
+    },
+    {
+      "id": "sql",
+      "name": "SQL",
+      "category": "Database",
+      "keywords": ["sql", "mysql", "postgresql", "database", "queries", "rdbms"],
+      "level": "technical"
+    },
+    {
+      "id": "excel",
+      "name": "Excel",
+      "category": "Data Analysis",
+      "keywords": ["excel", "spreadsheet", "pivot tables", "vlookup", "formulas"],
+      "level": "technical"
+    },
+    {
+      "id": "data_analysis",
+      "name": "Data Analysis",
+      "category": "Analytics",
+      "keywords": ["data analysis", "analytics", "statistical analysis", "data visualization"],
+      "level": "technical"
+    },
+    {
+      "id": "machine_learning",
+      "name": "Machine Learning",
+      "category": "AI/ML",
+      "keywords": ["machine learning", "ml", "scikit-learn", "tensorflow", "pytorch", "deep learning"],
+      "level": "technical"
+    },
+    {
+      "id": "tableau",
+      "name": "Tableau",
+      "category": "Visualization",
+      "keywords": ["tableau", "data visualization", "dashboards", "bi tools"],
+      "level": "technical"
+    },
+    {
+      "id": "power_bi",
+      "name": "Power BI",
+      "category": "Visualization",
+      "keywords": ["power bi", "powerbi", "microsoft bi", "dax"],
+      "level": "technical"
+    },
+    {
+      "id": "r_programming",
+      "name": "R Programming",
+      "category": "Programming",
+      "keywords": ["r programming", "rstudio", "ggplot", "statistical computing"],
+      "level": "technical"
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript",
+      "category": "Programming",
+      "keywords": ["javascript", "js", "react", "node", "angular", "vue"],
+      "level": "technical"
+    },
+    {
+      "id": "html_css",
+      "name": "HTML/CSS",
+      "category": "Web Development",
+      "keywords": ["html", "css", "web design", "frontend", "responsive design"],
+      "level": "technical"
+    },
+    {
+      "id": "digital_marketing",
+      "name": "Digital Marketing",
+      "category": "Marketing",
+      "keywords": ["digital marketing", "seo", "sem", "social media marketing", "content marketing"],
+      "level": "business"
+    },
+    {
+      "id": "google_analytics",
+      "name": "Google Analytics",
+      "category": "Analytics",
+      "keywords": ["google analytics", "ga4", "web analytics", "conversion tracking"],
+      "level": "technical"
+    },
+    {
+      "id": "project_management",
+      "name": "Project Management",
+      "category": "Management",
+      "keywords": ["project management", "agile", "scrum", "kanban", "jira", "trello"],
+      "level": "business"
+    },
+    {
+      "id": "business_analysis",
+      "name": "Business Analysis",
+      "category": "Business",
+      "keywords": ["business analysis", "requirements gathering", "process improvement", "stakeholder management"],
+      "level": "business"
+    },
+    {
+      "id": "crm",
+      "name": "CRM",
+      "category": "Sales",
+      "keywords": ["crm", "salesforce", "customer relationship", "hubspot"],
+      "level": "business"
+    },
+    {
+      "id": "accounting",
+      "name": "Accounting",
+      "category": "Finance",
+      "keywords": ["accounting", "bookkeeping", "financial reporting", "quickbooks", "sage"],
+      "level": "business"
+    },
+    {
+      "id": "sap",
+      "name": "SAP",
+      "category": "ERP",
+      "keywords": ["sap", "erp", "enterprise resource planning"],
+      "level": "technical"
+    },
+    {
+      "id": "cloud_computing",
+      "name": "Cloud Computing",
+      "category": "Infrastructure",
+      "keywords": ["cloud", "aws", "azure", "gcp", "cloud computing"],
+      "level": "technical"
+    },
+    {
+      "id": "ai_tools",
+      "name": "AI Tools",
+      "category": "AI/ML",
+      "keywords": ["chatgpt", "ai tools", "generative ai", "prompt engineering", "copilot"],
+      "level": "technical"
+    },
+    {
+      "id": "data_entry",
+      "name": "Data Entry",
+      "category": "Administrative",
+      "keywords": ["data entry", "typing", "administrative", "clerical"],
+      "level": "operational"
+    }
+  ],
+  "soft_skills": [
+    {
+      "id": "communication",
+      "name": "Communication",
+      "keywords": ["communication", "verbal", "written", "presentation", "public speaking"],
+      "importance": "high"
+    },
+    {
+      "id": "teamwork",
+      "name": "Teamwork",
+      "keywords": ["teamwork", "collaboration", "team player", "cooperative"],
+      "importance": "high"
+    },
+    {
+      "id": "leadership",
+      "name": "Leadership",
+      "keywords": ["leadership", "lead", "manage", "mentor", "supervise"],
+      "importance": "high"
+    },
+    {
+      "id": "problem_solving",
+      "name": "Problem Solving",
+      "keywords": ["problem solving", "analytical", "critical thinking", "troubleshooting"],
+      "importance": "high"
+    },
+    {
+      "id": "adaptability",
+      "name": "Adaptability",
+      "keywords": ["adaptability", "flexible", "change management", "resilience"],
+      "importance": "medium"
+    },
+    {
+      "id": "time_management",
+      "name": "Time Management",
+      "keywords": ["time management", "organization", "prioritization", "multitasking"],
+      "importance": "medium"
+    },
+    {
+      "id": "creativity",
+      "name": "Creativity",
+      "keywords": ["creativity", "creative", "innovative", "design thinking"],
+      "importance": "medium"
+    },
+    {
+      "id": "attention_to_detail",
+      "name": "Attention to Detail",
+      "keywords": ["attention to detail", "detail-oriented", "accuracy", "precision"],
+      "importance": "medium"
+    },
+    {
+      "id": "customer_service",
+      "name": "Customer Service",
+      "keywords": ["customer service", "client relations", "customer support"],
+      "importance": "medium"
+    },
+    {
+      "id": "emotional_intelligence",
+      "name": "Emotional Intelligence",
+      "keywords": ["emotional intelligence", "empathy", "interpersonal", "social skills"],
+      "importance": "medium"
+    }
+  ]
+}
