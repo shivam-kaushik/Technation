@@ -2,6 +2,7 @@ services:
   - type: web
     name: technation-skill-passport
     env: python
+    runtime: python-3.10.0
     region: oregon
     plan: free
     branch: main
@@ -13,4 +14,4 @@ services:
       - key: TRANSFORMERS_NO_TF
         value: "1"
       - key: PYTHON_VERSION
-        value: 3.10.0
+        value: "3.10.0"
