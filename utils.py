@@ -54,11 +54,18 @@ def _import_docx():
 _model = None
 
 def get_embedding_model():
-    """Lazy load the sentence transformer model"""
+    """Lazy load the sentence transformer model with memory optimization"""
     global _model
     if _model is None:
+        import os
         SentenceTransformer = _import_sentence_transformers()
-        _model = SentenceTransformer('all-MiniLM-L6-v2')
+        
+        # Use smaller model for low-memory environments
+        if os.environ.get('RENDER') or os.environ.get('LOW_MEMORY') == '1':
+            # Use a lighter model that fits in 512MB
+            _model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')
+        else:
+            _model = SentenceTransformer('all-MiniLM-L6-v2')
     return _model
 
 

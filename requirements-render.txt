@@ -1,0 +1,14 @@
+# Lightweight versions for 512MB RAM deployment
+streamlit==1.50.0
+sentence-transformers==5.1.2
+scikit-learn==1.6.1
+numpy==1.26.4
+# Use lighter pandas
+pandas==2.1.4
+PyPDF2==3.0.1
+python-docx==1.2.0
+reportlab==4.4.4
+# Explicitly use CPU-only torch to save memory
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.9.0+cpu
+transformers==4.57.1

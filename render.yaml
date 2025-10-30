@@ -6,8 +6,8 @@ services:
     region: oregon
     plan: free
     branch: main
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+    buildCommand: pip install --no-cache-dir streamlit sentence-transformers scikit-learn numpy pandas==2.1.4 PyPDF2 python-docx reportlab transformers torch --index-url https://download.pytorch.org/whl/cpu
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true --server.maxUploadSize 25 --server.enableXsrfProtection false
     envVars:
       - key: USE_TF
         value: NO
@@ -15,3 +15,11 @@ services:
         value: "1"
       - key: PYTHON_VERSION
         value: "3.10.0"
+      - key: RENDER
+        value: "true"
+      - key: LOW_MEMORY
+        value: "1"
+      - key: TOKENIZERS_PARALLELISM
+        value: "false"
+      - key: OMP_NUM_THREADS
+        value: "1"
