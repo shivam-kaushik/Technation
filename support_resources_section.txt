@@ -1,0 +1,104 @@
+elif page == "🤝 Support Resources":
+    st.header("🤝 Support Resources & Communities")
+    
+    st.markdown("""
+    ### 💡 Why This Matters
+    Access scholarships, mentorship programs, professional communities, and companies with strong DEI commitments. 
+    These resources can help advance your career, provide financial support, and connect you with like-minded professionals.
+    
+    ### 🎯 How to Use This Section
+    - Browse **scholarships** for financial support opportunities
+    - Explore **mentorship programs** to find guidance
+    - Join **communities** to network with peers
+    - Discover **companies** with inclusive cultures
+    """)
+    
+    women_data = load_women_in_ai_data()
+    hub_data = women_data['women_hub']
+    
+    # Tabs for different resources
+    tab1, tab2, tab3, tab4 = st.tabs(["💰 Scholarships", "🤝 Mentorship Programs", "🌐 Communities", "🏢 DEI Companies"])
+    
+    with tab1:
+        st.markdown("### 💰 Available Scholarships & Grants")
+        st.markdown("Updated opportunities for women and underrepresented communities in AI")
+        
+        # Sort by deadline
+        scholarships = sorted(hub_data['scholarships'], 
+                            key=lambda x: datetime.strptime(x['deadline'], '%Y-%m-%d'))
+        
+        for scholarship in scholarships:
+            display_scholarship_card(scholarship)
+        
+        # Alert setup
+        st.markdown("---")
+        st.markdown("#### 🔔 Get Alerts for New Opportunities")
+        email = st.text_input("Enter your email to receive notifications", key="scholarship_email")
+        if st.button("Subscribe to Alerts"):
+            if email:
+                st.success(f"✅ You'll receive alerts at {email} when new scholarships open!")
+            else:
+                st.error("Please enter a valid email address")
+    
+    with tab2:
+        st.markdown("### 🤝 Mentorship Programs")
+        st.markdown("Connect with structured mentorship programs designed for women and underrepresented communities in tech")
+        
+        for program in hub_data['mentorship_programs']:
+            st.markdown(f"""
+            <div style="background: white; border-left: 5px solid #8b5cf6; 
+                        padding: 1.5rem; margin: 1rem 0; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                <h3 style="margin: 0; color: #5b21b6;">{program['name']}</h3>
+                <p style="margin: 0.8rem 0; line-height: 1.6;">{program['description']}</p>
+                <div style="display: flex; gap: 2rem; margin: 1rem 0; flex-wrap: wrap;">
+                    <div><strong>Duration:</strong> {program['duration']}</div>
+                    <div><strong>Cost:</strong> {program['cost']}</div>
+                    <div><strong>For:</strong> {program['target_audience']}</div>
+                </div>
+                <a href="{program['application_link']}" target="_blank"
+                   style="display: inline-block; background: #8b5cf6; color: white; 
+                          padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; 
+                          font-weight: 600; margin-top: 1rem;">
+                    Apply Now →
+                </a>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    with tab3:
+        st.markdown("### 🌐 Women in Tech Communities")
+        st.markdown("Join professional communities for networking, support, and career growth")
+        
+        cols = st.columns(2)
+        for idx, community in enumerate(hub_data['communities']):
+            with cols[idx % 2]:
+                st.markdown(f"""
+                <div style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); 
+                            color: white; padding: 1.5rem; border-radius: 12px; margin: 0.5rem 0;">
+                    <h4 style="margin: 0; color: white;">{community['name']}</h4>
+                    <p style="margin: 0.5rem 0; opacity: 0.9;">👥 {community['members']} members</p>
+                    <p style="margin: 0.5rem 0; opacity: 0.9;">Focus: {community['focus']}</p>
+                    <a href="{community['link']}" target="_blank"
+                       style="color: white; text-decoration: underline; font-weight: 600;">
+                        Join Community →
+                    </a>
+                </div>
+                """, unsafe_allow_html=True)
+    
+    with tab4:
+        st.markdown("### 🏢 Companies with Strong DEI Commitment")
+        st.markdown("""
+        These companies have demonstrated strong commitment to diversity, equity, and inclusion in tech. 
+        The insights show their current diversity metrics, initiatives, and policies.
+        
+        **What the scores mean:**
+        - 🟢 **4.5+** = Excellent DEI practices
+        - 🟠 **4.0-4.4** = Good DEI practices
+        - 🔴 **Below 4.0** = Developing DEI practices
+        """)
+        
+        industry_data = load_industry_data()
+        dei_companies = industry_data['company_dei_insights']
+        
+        # Show top DEI companies
+        for company in dei_companies[:7]:
+            display_dei_company_card(company)
